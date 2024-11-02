@@ -8,13 +8,14 @@ terraform {
 }
 
 provider "google" {
-  project     = "sf-crime-stats"
-  region      = "us-central1"
+  credentials = file(var.credentials)
+  project     = var.project
+  region      = var.region
 }
 
-resource "google_storage_bucket" "sf-crime-data" {
+resource "google_storage_bucket" "sf-crime-bucket" {
   name          = "sf-crime-stats-terra-bucket"
-  location      = "US"
+  location      = var.location
   force_destroy = true
   storage_class = "STANDARD"
 
@@ -26,4 +27,9 @@ resource "google_storage_bucket" "sf-crime-data" {
       type = "AbortIncompleteMultipartUpload"
     }
   }
+}
+
+resource "google_bigquery_dataset" "sf-crime-bq-dataset" {
+  dataset_id                 = "sf_crime_dataset"
+  delete_contents_on_destroy = true
 }

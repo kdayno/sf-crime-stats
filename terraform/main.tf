@@ -8,7 +8,6 @@ terraform {
 }
 
 provider "google" {
-  credentials = "./keys/keys.json"
   project     = "sf-crime-stats"
   region      = "us-central1"
 }

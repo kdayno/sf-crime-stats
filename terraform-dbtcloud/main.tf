@@ -14,11 +14,12 @@ provider "dbtcloud" {
 }
 
 resource "dbtcloud_project" "dbt_project" {
-  name = "sf-crime-stats"
+  name                     = "sf-crime-stats"
+  dbt_project_subdirectory = "/dbt"
 }
 
 resource "dbtcloud_global_connection" "bigquery" {
-  name = "My BigQuery connection"
+  name = "bq-connection"
   bigquery = {
     gcp_project_id              = var.gcp_project_id
     timeout_seconds             = 1000
@@ -33,27 +34,46 @@ resource "dbtcloud_global_connection" "bigquery" {
   }
 }
 
-# resource "dbtcloud_repository" "github_repo" {
-#   project_id             = dbtcloud_project.dbt_project.id
-#   remote_url             = "git@github.com:<github_org>/<github_repo>.git"
-#   github_installation_id = 9876
-#   git_clone_strategy     = "github_app"
-# }
-
-
-// create 2 environments, one for Dev and one for Prod
-// here both are linked to the same Data Warehouse connection
-// for Prod, we need to create a credential as well
-resource "dbtcloud_environment" "my_dev" {
-  dbt_version   = "versionless"
-  name          = "Dev"
-  project_id    = dbtcloud_project.dbt_project.id
-  type          = "development"
-  connection_id = dbtcloud_global_connection.bigquery.id
+resource "dbtcloud_repository" "github_repo" {
+  project_id             = dbtcloud_project.dbt_project.id
+  remote_url             = "git@github.com:kdayno/sf-crime-stats.git"
+  github_installation_id = 48813291 # This value can be obtained from within GitHub (Settings>Integrations>Applications)
+  git_clone_strategy     = "github_app"
 }
 
-resource "dbtcloud_bigquery_credential" "my_credential" {
+resource "dbtcloud_project_repository" "github_repo_ui" {
+  project_id    = dbtcloud_project.dbt_project.id
+  repository_id = dbtcloud_repository.github_repo.repository_id
+}
+
+resource "dbtcloud_bigquery_credential" "credential_dev" {
   project_id  = dbtcloud_project.dbt_project.id
   dataset     = "sf_crime_dataset"
   num_threads = 16
+  is_active   = true
 }
+resource "dbtcloud_environment" "dbtcloud_dev" {
+  dbt_version       = "versionless"
+  name              = "Dev"
+  project_id        = dbtcloud_project.dbt_project.id
+  type              = "development"
+  credential_id     = dbtcloud_bigquery_credential.credential_dev.credential_id
+  connection_id     = dbtcloud_global_connection.bigquery.id
+  is_active         = true
+  use_custom_branch = true
+  custom_branch     = "feature/terraform-setup"
+}
+
+# resource "dbtcloud_environment" "dbtcloud_stg" {
+#   dbt_version     = "versionless"
+#   name            = "Dev"
+#   project_id      = dbtcloud_project.dbt_project.id
+#   type            = "deployment"
+#   deployment_type = "staging"
+#   credential_id   = dbtcloud_bigquery_credential.credential_dev.credential_id
+#   connection_id   = dbtcloud_global_connection.bigquery.id
+#   is_active       = true
+
+# }
+
+

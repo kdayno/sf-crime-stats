@@ -1,3 +1,4 @@
+# keys.json file is generated after creating a service account on GCP
 variable "credentials" {
   description = "My GCP Credentials"
   default     = "./keys/keys.json"

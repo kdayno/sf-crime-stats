@@ -1,9 +1,9 @@
 # San Francisco Crime Stats 
 
 ## Purpose
-![image](./docs/sf-crime-stats-solution-architecture.png)
 
 ## Solution Architecture
+![image](./docs/sf-crime-stats-solution-architecture.png)
 
 ## Deployment
 

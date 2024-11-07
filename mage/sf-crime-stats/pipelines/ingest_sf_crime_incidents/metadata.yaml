@@ -9,7 +9,7 @@ blocks:
   has_callback: false
   language: python
   name: ingest_sf_crime_incidents
-  retry_config: null
+  retry_config: {}
   status: executed
   timeout: null
   type: data_loader
@@ -18,7 +18,8 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
-  downstream_blocks: []
+  downstream_blocks:
+  - load_sf_crime_incidents_gcs_bucket
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -31,6 +32,25 @@ blocks:
   upstream_blocks:
   - ingest_sf_crime_incidents
   uuid: transform_sf_crime_incidents
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_path: data_exporters/load_sf_crime_incidents_gcs_bucket.py
+    file_source:
+      path: data_exporters/load_sf_crime_incidents_gcs_bucket.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: load_sf_crime_incidents_gcs_bucket
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - transform_sf_crime_incidents
+  uuid: load_sf_crime_incidents_gcs_bucket
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

@@ -39,7 +39,6 @@ def transform(data, *args, **kwargs):
                         , 'supervisor_district_2012'
                         , 'latitude'
                         , 'longitude'
-                        , 'filed_online'
                     )
     
     print(df.schema)

@@ -1,11 +1,13 @@
 import io
 import polars as pl
 import requests
+import datetime as dt
 
 if 'data_loader' not in globals():
     from mage_ai.data_preparation.decorators import data_loader
 if 'test' not in globals():
     from mage_ai.data_preparation.decorators import test
+    
 
 @data_loader
 def load_data_from_api(*args, **kwargs):
@@ -13,13 +15,20 @@ def load_data_from_api(*args, **kwargs):
     Ingest San Francisco Police Department Incidents from API endpoint
     """
 
-    url = "https://data.sfgov.org/resource/wg3w-h783.json"
+    previous_date = (dt.datetime.today() - dt.timedelta(days=2)).strftime('%Y-%m-%dT00:00:00.000')
+    
+    url = f"https://data.sfgov.org/resource/wg3w-h783.json?incident_date={previous_date}"
 
     r = requests.get(url)
 
-    df = pl.read_json(io.StringIO(r.text))
+    try:
+        df = pl.read_json(io.StringIO(r.text))
+        
+    except Exception as e:
+        print(e)
 
     return df
+
 
 
 @test

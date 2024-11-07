@@ -1,1 +1,6 @@
 project_uuid: 9a9ff7eae97448a995a0217b9345521e
+features:
+  polars: true
+  command_center: true
+help_improve_mage:
+pipelines:

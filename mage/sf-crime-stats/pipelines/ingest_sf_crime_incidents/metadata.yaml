@@ -73,5 +73,9 @@ spark_config: {}
 tags: []
 type: python
 uuid: ingest_sf_crime_incidents
+variables:
+  config_profile: dev
+  days_offset: 1
+  gcs_bucket: sf-crime-stats-terra-bucket
 variables_dir: /home/src/mage_data/sf-crime-stats
 widgets: []

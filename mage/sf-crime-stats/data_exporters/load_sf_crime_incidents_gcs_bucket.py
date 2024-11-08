@@ -1,5 +1,6 @@
 import polars as pl
 import datetime as dt
+import pytz
 
 from mage_ai.settings.repo import get_repo_path
 from mage_ai.io.config import ConfigFileLoader
@@ -19,18 +20,19 @@ def export_data_to_google_cloud_storage(df, **kwargs) -> None:
     Docs: https://docs.mage.ai/design/data-loading#googlecloudstorage
     """
     config_path = path.join(get_repo_path(), 'io_config.yaml')
-    config_profile = 'dev'
+    config_profile = kwargs['config_profile']
 
-    previous_date = (dt.datetime.today() - dt.timedelta(days=2))
+    est = pytz.timezone('US/Eastern')
+
+    previous_date = dt.datetime.now(est) - dt.timedelta(kwargs['days_offset'])
+
     previous_date_formatted = previous_date.strftime('%Y-%m-%d')
     previous_date_year = previous_date.strftime('%Y')
     previous_date_month = previous_date.strftime('%m')
 
-    bucket_name = 'sf-crime-stats-terra-bucket'
+    bucket_name = kwargs['gcs_bucket']
     object_key = f'raw/{previous_date_year}/{previous_date_month}/{previous_date_formatted}.parquet'
     
-
-    # df = df.to_pandas()
 
     GoogleCloudStorage.with_config(ConfigFileLoader(config_path, config_profile)).export(
         df,

@@ -2,6 +2,7 @@ import io
 import polars as pl
 import requests
 import datetime as dt
+import pytz
 
 if 'data_loader' not in globals():
     from mage_ai.data_preparation.decorators import data_loader
@@ -15,8 +16,11 @@ def load_data_from_api(*args, **kwargs):
     Ingest San Francisco Police Department Incidents from API endpoint
     """
 
-    previous_date = (dt.datetime.today() - dt.timedelta(days=2)).strftime('%Y-%m-%dT00:00:00.000')
-    
+    est = pytz.timezone('US/Eastern')
+  
+    previous_date = (dt.datetime.now(est) - dt.timedelta(kwargs['days_offset'])).strftime('%Y-%m-%dT00:00:00.000')
+    print(previous_date)
+
     url = f"https://data.sfgov.org/resource/wg3w-h783.json?incident_date={previous_date}"
 
     r = requests.get(url)
@@ -28,7 +32,6 @@ def load_data_from_api(*args, **kwargs):
         print(e)
 
     return df
-
 
 
 @test

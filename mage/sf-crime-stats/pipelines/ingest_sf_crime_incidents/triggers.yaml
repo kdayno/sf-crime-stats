@@ -1,0 +1,16 @@
+triggers:
+- description: null
+  envs: []
+  last_enabled_at: null
+  name: daily_trigger
+  pipeline_uuid: ingest_sf_crime_incidents
+  schedule_interval: '@daily'
+  schedule_type: time
+  settings:
+    landing_time_enabled: false
+  sla: null
+  start_time: 2024-11-08 19:00:00
+  status: inactive
+  token: 7a9183a19c6342028144df8426a3939f
+  variables:
+    days_offset: 2

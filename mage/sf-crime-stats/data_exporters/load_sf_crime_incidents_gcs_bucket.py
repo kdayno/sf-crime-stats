@@ -31,11 +31,12 @@ def export_data_to_google_cloud_storage(df, **kwargs) -> None:
     previous_date_month = previous_date.strftime('%m')
 
     bucket_name = kwargs['gcs_bucket']
-    object_key = f'raw/{previous_date_year}/{previous_date_month}/{previous_date_formatted}.parquet'
+    object_key = f'raw/daily_load/{previous_date_year}/{previous_date_month}/{previous_date_formatted}.parquet'
     
 
     GoogleCloudStorage.with_config(ConfigFileLoader(config_path, config_profile)).export(
         df,
         bucket_name,
-        object_key
+        object_key,
+        format='parquet',
     )

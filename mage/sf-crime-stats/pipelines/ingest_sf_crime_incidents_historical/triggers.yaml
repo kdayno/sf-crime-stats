@@ -1,0 +1,14 @@
+triggers:
+- description: null
+  envs: []
+  last_enabled_at: 2024-11-09 18:38:31.110194
+  name: API_TRIGGER_CREATED_FROM_CODE
+  pipeline_uuid: ingest_sf_crime_incidents_historical
+  schedule_interval: null
+  schedule_type: api
+  settings: null
+  sla: null
+  start_time: 2024-11-09 18:22:47.171533
+  status: active
+  token: cc8234f223de4b0c9910b7f36414dd48
+  variables: null

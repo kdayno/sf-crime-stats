@@ -1,0 +1,14 @@
+triggers:
+- description: null
+  envs: []
+  last_enabled_at: 2024-11-09 18:42:43.893939
+  name: loop_historical_trigger
+  pipeline_uuid: loop_ingest_sf_crime_incidents_historical
+  schedule_interval: '@once'
+  schedule_type: time
+  settings: null
+  sla: null
+  start_time: 2024-11-08 18:25:00
+  status: inactive
+  token: 3043f040de324df5881d9e6150a6778e
+  variables: {}

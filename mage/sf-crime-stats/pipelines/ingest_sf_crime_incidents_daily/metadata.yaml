@@ -62,7 +62,7 @@ executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: ingest-sf-crime-incidents
+name: ingest-sf-crime-incidents_daily
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -72,7 +72,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-uuid: ingest_sf_crime_incidents
+uuid: ingest_sf_crime_incidents_daily
 variables:
   config_profile: dev
   days_offset: 1

@@ -199,3 +199,19 @@ override.tf.json
 .terraformrc
 terraform.rc
 keys.json
+
+# Mage
+.DS_Store
+.file_versions
+.gitkeep
+.log
+.logs/
+.mage_temp_profiles
+.preferences.yaml
+.variables/
+__pycache__/
+docker-compose.override.yml
+logs/
+mage-ai.db
+mage_data/
+secrets/

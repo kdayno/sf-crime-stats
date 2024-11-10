@@ -1,6 +1,21 @@
 blocks:
 - all_upstream_blocks_executed: true
   color: null
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: markdown
+  name: loop_ingest_sf_crime_incidents_historical_docs
+  retry_config: null
+  status: updated
+  timeout: null
+  type: markdown
+  upstream_blocks: []
+  uuid: loop_ingest_sf_crime_incidents_historical_docs
+- all_upstream_blocks_executed: true
+  color: null
   configuration:
     file_path: data_loaders/trigger_sf_crime_incidents_historical_pipeline.py
     file_source:

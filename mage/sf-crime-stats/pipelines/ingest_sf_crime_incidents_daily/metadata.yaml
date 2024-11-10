@@ -1,6 +1,24 @@
 blocks:
 - all_upstream_blocks_executed: true
   color: null
+  configuration:
+    file_path: markdowns/ingest_sf_crime_incidents_daily_docs.md
+    file_source:
+      path: markdowns/ingest_sf_crime_incidents_daily_docs.md
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: markdown
+  name: ingest_sf_crime_incidents_daily_docs
+  retry_config: null
+  status: updated
+  timeout: null
+  type: markdown
+  upstream_blocks: []
+  uuid: ingest_sf_crime_incidents_daily_docs
+- all_upstream_blocks_executed: true
+  color: null
   configuration: {}
   downstream_blocks:
   - transform_sf_crime_incidents
@@ -10,12 +28,12 @@ blocks:
   language: python
   name: ingest_sf_crime_incidents
   retry_config: {}
-  status: executed
+  status: updated
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: ingest_sf_crime_incidents
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks:
@@ -32,7 +50,7 @@ blocks:
   upstream_blocks:
   - ingest_sf_crime_incidents
   uuid: transform_sf_crime_incidents
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     file_path: data_exporters/load_sf_crime_incidents_gcs_bucket.py

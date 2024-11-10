@@ -12,7 +12,7 @@ if 'test' not in globals():
 @data_loader
 def load_data_from_api(*args, **kwargs):
     """
-    Ingest San Francisco Police Department Incidents from API endpoint
+    Ingest San Francisco Crime Incidents data via Public API endpoint
     """
 
     row_limit = kwargs['row_limit']

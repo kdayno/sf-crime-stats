@@ -13,7 +13,7 @@ if 'test' not in globals():
 @data_loader
 def load_data_from_api(*args, **kwargs):
     """
-    Ingest San Francisco Police Department Incidents from API endpoint
+    Ingest San Francisco Crime Incidents via a Public API endpoint
     """
 
     est = pytz.timezone('US/Eastern')

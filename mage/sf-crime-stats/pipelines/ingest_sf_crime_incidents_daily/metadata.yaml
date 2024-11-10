@@ -28,7 +28,7 @@ blocks:
   language: python
   name: ingest_sf_crime_incidents
   retry_config: {}
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
@@ -93,7 +93,8 @@ type: python
 uuid: ingest_sf_crime_incidents_daily
 variables:
   config_profile: dev
-  days_offset: 1
+  days_offset: 0
   gcs_bucket: sf-crime-stats-terra-bucket
+  input_date: YYYY-MM-DD
 variables_dir: /home/src/mage_data/sf-crime-stats
 widgets: []

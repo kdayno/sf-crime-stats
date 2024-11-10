@@ -42,6 +42,7 @@ def trigger(*args, **kwargs):
             poll_interval=60,       # Optional: check the status of triggered pipeline every N seconds
             poll_timeout=None,      # Optional: raise an exception after N seconds
             verbose=True,           # Optional: print status of triggered pipeline run
+            schedule_name="looped_block_api_trigger"
         )
 
         row_offset = row_offset + 100000

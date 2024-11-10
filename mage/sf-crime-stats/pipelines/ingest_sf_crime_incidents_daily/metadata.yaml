@@ -33,7 +33,7 @@ blocks:
   type: data_loader
   upstream_blocks: []
   uuid: ingest_sf_crime_incidents
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
   downstream_blocks:
@@ -50,7 +50,7 @@ blocks:
   upstream_blocks:
   - ingest_sf_crime_incidents
   uuid: transform_sf_crime_incidents
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     file_path: data_exporters/load_sf_crime_incidents_gcs_bucket.py
@@ -88,7 +88,8 @@ run_pipeline_in_one_process: false
 settings:
   triggers: null
 spark_config: {}
-tags: []
+tags:
+- ingestion
 type: python
 uuid: ingest_sf_crime_incidents_daily
 variables:

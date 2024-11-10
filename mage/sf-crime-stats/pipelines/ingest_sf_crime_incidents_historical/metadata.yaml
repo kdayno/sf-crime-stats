@@ -88,7 +88,8 @@ run_pipeline_in_one_process: false
 settings:
   triggers: null
 spark_config: {}
-tags: []
+tags:
+- ingestion
 type: python
 uuid: ingest_sf_crime_incidents_historical
 variables:

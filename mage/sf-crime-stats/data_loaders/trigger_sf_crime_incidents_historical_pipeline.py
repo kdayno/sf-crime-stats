@@ -12,9 +12,10 @@ if 'data_loader' not in globals():
 @data_loader
 def trigger(*args, **kwargs):
     """
-    Trigger another pipeline to run.
-
-    Documentation: https://docs.mage.ai/orchestration/triggers/trigger-pipeline
+    This pipeline initiates the load of all historical San Francisco Crime Incidents reported by the San Francisco Police Department.
+    
+    INPUT: "row_limit" value
+    OUTPUT: Triggers "ingest_sf_crime_incidents_historical" N times calculated based on total records and "row_limit" value provided
     """
 
     url = f"https://data.sfgov.org/resource/wg3w-h783.json?$select=count(row_id)"

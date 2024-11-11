@@ -14,20 +14,19 @@ import os
 @data_loader
 def load_from_google_cloud_storage(*args, **kwargs):
     """
-    Template for loading data from a Google Cloud Storage bucket.
-    Specify your configuration settings in 'io_config.yaml'.
-
-    Docs: https://docs.mage.ai/design/data-loading#googlecloudstorage
+    Extract SFDP incident data from GCS bucket
     """
+    
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = kwargs['config_profile']
 
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/src/secrets/gcp_credentials.json'
 
     bucket_name = kwargs['gcs_bucket']
+    source_path = kwargs['source_path']
 
 
-    object_key = f'{bucket_name}/raw/historical_load/'
+    object_key = f'{bucket_name}/{source_path}'
 
     gcs = pa.fs.GcsFileSystem()
 

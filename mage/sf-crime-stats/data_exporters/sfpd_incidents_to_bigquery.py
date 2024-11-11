@@ -11,20 +11,20 @@ if 'data_exporter' not in globals():
 @data_exporter
 def export_data_to_big_query(df: DataFrame, **kwargs) -> None:
     """
-    Template for exporting data to a BigQuery warehouse.
-    Specify your configuration settings in 'io_config.yaml'.
-
-    Docs: https://docs.mage.ai/design/data-loading#bigquery
+    Load transformed SFPD incident data into BigQuery
     """
 
     bq_dataset_name = kwargs['bq_dataset']
+    gcp_project_id = kwargs['gcp_project_id']
 
-    table_id = f'sf-crime-stats-440500.{bq_dataset_name}.sfpd_incidents_all'
+    table_id = f'{gcp_project_id}.{bq_dataset_name}.sfpd_incidents_all'
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = kwargs['config_profile']
+
+    bq_if_table_exists = kwargs['bq_if_table_exists']
 
     BigQuery.with_config(ConfigFileLoader(config_path, config_profile)).export(
         df,
         table_id,
-        if_exists='replace',  # Specify resolution policy if table name already exists
+        if_exists=bq_if_table_exists,  # Specify resolution policy if table name already exists
     )

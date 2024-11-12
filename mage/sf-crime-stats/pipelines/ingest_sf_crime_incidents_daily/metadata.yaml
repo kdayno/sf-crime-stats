@@ -2,80 +2,80 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration:
-    file_path: markdowns/ingest_sf_crime_incidents_daily_docs.md
+    file_path: markdowns/ingest_sfpd_incidents_daily_docs.md
     file_source:
-      path: markdowns/ingest_sf_crime_incidents_daily_docs.md
+      path: markdowns/ingest_sfpd_incidents_daily_docs.md
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: markdown
-  name: ingest_sf_crime_incidents_daily_docs
+  name: ingest_sfpd_incidents_daily_docs
   retry_config: null
   status: updated
   timeout: null
   type: markdown
   upstream_blocks: []
-  uuid: ingest_sf_crime_incidents_daily_docs
+  uuid: ingest_sfpd_incidents_daily_docs
 - all_upstream_blocks_executed: true
   color: null
   configuration:
-    file_path: data_loaders/ingest_sf_crime_incidents_daily.py
+    file_path: data_loaders/ingest_sfpd_incidents_daily.py
     file_source:
-      path: data_loaders/ingest_sf_crime_incidents_daily.py
+      path: data_loaders/ingest_sfpd_incidents_daily.py
   downstream_blocks:
-  - transform_sf_crime_incidents_daily
+  - transform_sfpd_incidents_daily
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: ingest_sf_crime_incidents_daily
+  name: ingest_sfpd_incidents_daily
   retry_config: {}
   status: updated
   timeout: null
   type: data_loader
   upstream_blocks: []
-  uuid: ingest_sf_crime_incidents_daily
+  uuid: ingest_sfpd_incidents_daily
 - all_upstream_blocks_executed: false
   color: null
   configuration:
-    file_path: transformers/transform_sf_crime_incidents_daily.py
+    file_path: transformers/transform_sfpd_incidents_daily.py
     file_source:
-      path: transformers/transform_sf_crime_incidents_daily.py
+      path: transformers/transform_sfpd_incidents_daily.py
   downstream_blocks:
-  - load_sf_crime_incidents_gcs_bucket_daily
+  - load_sfpd_incidents_gcs_bucket_daily
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: transform_sf_crime_incidents_daily
+  name: transform_sfpd_incidents_daily
   retry_config: null
   status: updated
   timeout: null
   type: transformer
   upstream_blocks:
-  - ingest_sf_crime_incidents_daily
-  uuid: transform_sf_crime_incidents_daily
+  - ingest_sfpd_incidents_daily
+  uuid: transform_sfpd_incidents_daily
 - all_upstream_blocks_executed: false
   color: null
   configuration:
-    file_path: data_exporters/load_sf_crime_incidents_gcs_bucket_daily.py
+    file_path: data_exporters/load_sfpd_incidents_gcs_bucket_daily.py
     file_source:
-      path: data_exporters/load_sf_crime_incidents_gcs_bucket_daily.py
+      path: data_exporters/load_sfpd_incidents_gcs_bucket_daily.py
   downstream_blocks:
   - trigger_etl_gcs_to_bigquery
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: load_sf_crime_incidents_gcs_bucket_daily
+  name: load_sfpd_incidents_gcs_bucket_daily
   retry_config: null
   status: executed
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - transform_sf_crime_incidents_daily
-  uuid: load_sf_crime_incidents_gcs_bucket_daily
+  - transform_sfpd_incidents_daily
+  uuid: load_sfpd_incidents_gcs_bucket_daily
 - all_upstream_blocks_executed: false
   color: null
   configuration: {}
@@ -90,7 +90,7 @@ blocks:
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - load_sf_crime_incidents_gcs_bucket_daily
+  - load_sfpd_incidents_gcs_bucket_daily
   uuid: trigger_etl_gcs_to_bigquery
 cache_block_output_in_memory: false
 callbacks: []

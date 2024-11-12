@@ -54,7 +54,7 @@ resource "dbtcloud_bigquery_credential" "credential_dev" {
 }
 resource "dbtcloud_environment" "dbtcloud_dev" {
   dbt_version       = "versionless"
-  name              = "Dev"
+  name              = "DEV"
   project_id        = dbtcloud_project.dbt_project.id
   type              = "development"
   credential_id     = dbtcloud_bigquery_credential.credential_dev.credential_id
@@ -64,16 +64,13 @@ resource "dbtcloud_environment" "dbtcloud_dev" {
   custom_branch     = "feature/dbt-model"
 }
 
-# resource "dbtcloud_environment" "dbtcloud_stg" {
-#   dbt_version     = "versionless"
-#   name            = "Dev"
-#   project_id      = dbtcloud_project.dbt_project.id
-#   type            = "deployment"
-#   deployment_type = "staging"
-#   credential_id   = dbtcloud_bigquery_credential.credential_dev.credential_id
-#   connection_id   = dbtcloud_global_connection.bigquery.id
-#   is_active       = true
-
-# }
-
-
+resource "dbtcloud_environment" "dbtcloud_stg" {
+  dbt_version     = "versionless"
+  name            = "STG"
+  project_id      = dbtcloud_project.dbt_project.id
+  type            = "deployment"
+  deployment_type = "staging"
+  credential_id   = dbtcloud_bigquery_credential.credential_dev.credential_id
+  connection_id   = dbtcloud_global_connection.bigquery.id
+  is_active       = true
+}

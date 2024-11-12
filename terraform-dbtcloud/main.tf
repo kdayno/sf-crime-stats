@@ -54,7 +54,7 @@ resource "dbtcloud_bigquery_credential" "credential_dev" {
 }
 resource "dbtcloud_environment" "dbtcloud_dev" {
   dbt_version       = "versionless"
-  name              = "DEV"
+  name              = "Development"
   project_id        = dbtcloud_project.dbt_project.id
   type              = "development"
   credential_id     = dbtcloud_bigquery_credential.credential_dev.credential_id
@@ -66,7 +66,7 @@ resource "dbtcloud_environment" "dbtcloud_dev" {
 
 resource "dbtcloud_environment" "dbtcloud_stg" {
   dbt_version     = "versionless"
-  name            = "STG"
+  name            = "Staging"
   project_id      = dbtcloud_project.dbt_project.id
   type            = "deployment"
   deployment_type = "staging"

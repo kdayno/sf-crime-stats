@@ -78,7 +78,7 @@ tags:
 type: python
 uuid: etl_gcs_to_bigquery
 variables:
-  bq_dataset: sf_crime_dataset
+  bq_dataset: sf_crime_stats
   bq_if_table_exists: replace
   config_profile: dev
   gcp_project_id: sf-crime-stats-440500

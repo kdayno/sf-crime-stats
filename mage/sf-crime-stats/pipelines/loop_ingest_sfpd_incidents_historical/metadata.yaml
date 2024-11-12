@@ -62,7 +62,7 @@ executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: loop_ingest_sf_crime_incidents_historical
+name: loop_ingest_sfpd_incidents_historical
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -73,7 +73,7 @@ spark_config: {}
 tags:
 - ingestion
 type: python
-uuid: loop_ingest_sf_crime_incidents_historical
+uuid: loop_ingest_sfpd_incidents_historical
 variables:
   row_limit: 100000
 variables_dir: /home/src/mage_data/sf-crime-stats

@@ -30,6 +30,6 @@ resource "google_storage_bucket" "sf-crime-bucket" {
 }
 
 resource "google_bigquery_dataset" "sf-crime-bq-dataset" {
-  dataset_id                 = "sf_crime_dataset"
+  dataset_id                 = "sf_crime_stats"
   delete_contents_on_destroy = true
 }

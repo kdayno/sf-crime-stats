@@ -1,0 +1,14 @@
+triggers:
+- description: null
+  envs: []
+  last_enabled_at: 2024-11-11 16:25:52.972436
+  name: etl_gcs_to_bigquery_block_api_trigger
+  pipeline_uuid: etl_gcs_to_bigquery
+  schedule_interval: null
+  schedule_type: api
+  settings: null
+  sla: null
+  start_time: 2024-11-11 16:25:52.972409
+  status: active
+  token: eb5b526d1ff347f49471e27528fa4d74
+  variables: null

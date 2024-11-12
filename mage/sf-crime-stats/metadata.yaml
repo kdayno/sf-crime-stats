@@ -4,3 +4,6 @@ features:
   command_center: true
 help_improve_mage:
 pipelines:
+  settings:
+    triggers:
+      save_in_code_automatically: true

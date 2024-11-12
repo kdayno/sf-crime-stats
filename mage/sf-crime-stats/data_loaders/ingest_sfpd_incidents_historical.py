@@ -28,12 +28,4 @@ def load_data_from_api(*args, **kwargs):
     except Exception as e:
         print(e)
 
-    return (df, row_limit, row_offset)
-
-
-# @test
-# def test_output(output, *args) -> None:
-#     """
-#     Template code for testing the output of the block.
-#     """
-#     assert output is not None, 'The output is undefined'
+    return df

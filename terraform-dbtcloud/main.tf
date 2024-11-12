@@ -61,7 +61,7 @@ resource "dbtcloud_environment" "dbtcloud_dev" {
   connection_id     = dbtcloud_global_connection.bigquery.id
   is_active         = true
   use_custom_branch = true
-  custom_branch     = "feature/terraform-setup"
+  custom_branch     = "feature/dbt-model"
 }
 
 # resource "dbtcloud_environment" "dbtcloud_stg" {

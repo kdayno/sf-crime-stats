@@ -8,13 +8,12 @@ if 'test' not in globals():
 
 
 @transformer
-def transform(data, *args, **kwargs):
+def transform(params, *args, **kwargs):
     """
     Select relevant cols and parse datetime columns
     """
 
-
-    df = data.select(col('incident_datetime').str.strptime(pl.Datetime)
+    df = params[0].select(col('incident_datetime').str.strptime(pl.Datetime)
                         , col('incident_date').str.strptime(pl.Datetime)
                         , 'incident_time'
                         , col('incident_year').cast(pl.Int64)
@@ -41,14 +40,6 @@ def transform(data, *args, **kwargs):
                         , 'longitude'
                     )
     
-    print(df.schema)
+    date_of_data_to_load = params[1]
 
-    return df
-
-
-# @test
-# def test_output(output, *args) -> None:
-#     """
-#     Template code for testing the output of the block.
-#     """
-#     assert output is not None, 'The output is undefined'
+    return (df, date_of_data_to_load)

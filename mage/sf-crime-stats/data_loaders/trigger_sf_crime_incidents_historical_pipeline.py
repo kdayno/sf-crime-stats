@@ -27,16 +27,19 @@ def trigger(*args, **kwargs):
     row_offset = 0
 
     iteration_num = math.ceil(count_val / row_limit) # Calculates num of iterations to run 'ingest_sf_crime_incidents_historical' pipeline
+    print('# of iterations to process: ', iteration_num)
 
     for iteration in range(1, iteration_num+1):
-        print('Processing iteration: ', iteration) 
+        print('Processing iteration: #', iteration) 
         print('Row offset for current run: ', row_offset)
 
         trigger_pipeline(
-            'ingest_sf_crime_incidents_historical',        # Required: enter the UUID of the pipeline to trigger
-            variables={'row_limit': row_limit, 'row_offset': row_offset, 'iteration_num': iteration},           # Optional: runtime variables for the pipeline
-            check_status=True,     # Optional: poll and check the status of the triggered pipeline
-            error_on_failure=True, # Optional: if triggered pipeline fails, raise an exception
+            'ingest_sf_crime_incidents_historical', # Required: enter the UUID of the pipeline to trigger
+            variables={'row_limit': row_limit, 
+                       'row_offset': row_offset, 
+                       'iteration_num': iteration}, # Optional: runtime variables for the pipeline
+            check_status=True,      # Optional: poll and check the status of the triggered pipeline
+            error_on_failure=True,  # Optional: if triggered pipeline fails, raise an exception
             poll_interval=60,       # Optional: check the status of triggered pipeline every N seconds
             poll_timeout=None,      # Optional: raise an exception after N seconds
             verbose=True,           # Optional: print status of triggered pipeline run
@@ -44,3 +47,8 @@ def trigger(*args, **kwargs):
         )
 
         row_offset = row_offset + 100000
+    
+    object_key = 'raw/historical_load/'
+    bq_if_table_exists = 'replace'
+    
+    return (object_key, bq_if_table_exists)

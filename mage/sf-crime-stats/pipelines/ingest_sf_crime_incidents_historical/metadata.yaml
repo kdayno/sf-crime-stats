@@ -47,7 +47,7 @@ blocks:
   language: python
   name: transform_sf_crime_incidents_historical
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: transformer
   upstream_blocks:
@@ -63,7 +63,7 @@ blocks:
   language: python
   name: load_sf_crime_incidents_gcs_bucket_historical
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: data_exporter
   upstream_blocks:

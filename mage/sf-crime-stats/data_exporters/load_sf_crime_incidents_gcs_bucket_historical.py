@@ -10,10 +10,7 @@ if 'data_exporter' not in globals():
 @data_exporter
 def export_data_to_google_cloud_storage(df, **kwargs) -> None:
     """
-    Template for exporting data to a Google Cloud Storage bucket.
-    Specify your configuration settings in 'io_config.yaml'.
-
-    Docs: https://docs.mage.ai/design/data-loading#googlecloudstorage
+    Load extracted historical SFPD incident data into a GCS bucket
     """
 
     config_path = path.join(get_repo_path(), 'io_config.yaml')

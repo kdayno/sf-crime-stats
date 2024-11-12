@@ -20,18 +20,37 @@ blocks:
     file_path: data_loaders/trigger_sf_crime_incidents_historical_pipeline.py
     file_source:
       path: data_loaders/trigger_sf_crime_incidents_historical_pipeline.py
-  downstream_blocks: []
+  downstream_blocks:
+  - trigger_etl_gcs_to_bigquery
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
   name: trigger_sf_crime_incidents_historical_pipeline
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: trigger_sf_crime_incidents_historical_pipeline
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: data_exporters/trigger_etl_gcs_to_bigquery.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: trigger_etl_gcs_to_bigquery
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - trigger_sf_crime_incidents_historical_pipeline
+  uuid: trigger_etl_gcs_to_bigquery
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

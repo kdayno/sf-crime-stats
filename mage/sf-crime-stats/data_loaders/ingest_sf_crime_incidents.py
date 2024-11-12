@@ -2,7 +2,6 @@ import io
 import polars as pl
 import requests
 import datetime as dt
-import pytz
 
 if 'data_loader' not in globals():
     from mage_ai.data_preparation.decorators import data_loader
@@ -15,8 +14,6 @@ def load_data_from_api(*args, **kwargs):
     """
     Ingest San Francisco Crime Incidents via a Public API endpoint
     """
-
-    est = pytz.timezone('US/Eastern')
   
     input_date = kwargs['input_date']
     days_offset = kwargs['days_offset']
@@ -43,13 +40,15 @@ def load_data_from_api(*args, **kwargs):
 
     # Determine data from which DATE to load accounting for specified offset
     if days_offset > 0:
-        date_of_data_to_load = (input_date - dt.timedelta(days_offset)).strftime('%Y-%m-%dT00:00:00.000')
+        date_of_data_to_load = (input_date - dt.timedelta(days_offset))
+        date_of_data_to_load_formatted = date_of_data_to_load.strftime('%Y-%m-%dT00:00:00.000')
 
     else:
-        date_of_data_to_load = input_date.strftime('%Y-%m-%dT00:00:00.000')
+        date_of_data_to_load = input_date
+        date_of_data_to_load_formatted = date_of_data_to_load.strftime('%Y-%m-%dT00:00:00.000')
 
 
-    url = f"https://data.sfgov.org/resource/wg3w-h783.json?incident_date={date_of_data_to_load}"
+    url = f"https://data.sfgov.org/resource/wg3w-h783.json?incident_date={date_of_data_to_load_formatted}"
 
     r = requests.get(url)
 
@@ -59,12 +58,4 @@ def load_data_from_api(*args, **kwargs):
     except Exception as e:
         print(e)
 
-    return df
-
-
-# @test
-# def test_output(output, *args) -> None:
-#     """
-#     Template code for testing the output of the block.
-#     """
-#     assert output is not None, 'The output is undefined'
+    return (df, date_of_data_to_load)

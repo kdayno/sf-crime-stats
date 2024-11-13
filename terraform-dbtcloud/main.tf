@@ -14,6 +14,7 @@ provider "dbtcloud" {
 }
 
 resource "dbtcloud_project" "dbt_project" {
+  # The name of a dbt project: Must be letters, digits and underscores only, and cannot start with a digit
   name                     = "San Francisco Crime Stats"
   dbt_project_subdirectory = "dbt/sf_crime_stats"
 }

@@ -6,6 +6,10 @@ variable "dbt_token" {
   type = string
 }
 
+variable "dbt_user_token" {
+  type = string
+}
+
 variable "dbt_host_url" {
   type = string
 }

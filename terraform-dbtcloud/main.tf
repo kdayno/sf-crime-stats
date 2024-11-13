@@ -14,8 +14,8 @@ provider "dbtcloud" {
 }
 
 resource "dbtcloud_project" "dbt_project" {
-  name                     = "sf-crime-stats"
-  dbt_project_subdirectory = "/dbt"
+  name                     = "San Francisco Crime Stats"
+  dbt_project_subdirectory = "dbt/sf_crime_stats"
 }
 
 resource "dbtcloud_global_connection" "bigquery" {
@@ -34,13 +34,41 @@ resource "dbtcloud_global_connection" "bigquery" {
   }
 }
 
-resource "dbtcloud_repository" "github_repo" {
-  project_id             = dbtcloud_project.dbt_project.id
-  remote_url             = "git@github.com:kdayno/sf-crime-stats.git"
-  github_installation_id = 48813291 # This value can be obtained from within GitHub (Settings>Integrations>Applications)
-  git_clone_strategy     = "github_app"
-}
+# resource "dbtcloud_repository" "github_repo" {
+#   project_id             = dbtcloud_project.dbt_project.id
+#   remote_url             = "git@github.com:kdayno/sf-crime-stats.git"
+#   github_installation_id = 57089875 # This value can be obtained from within GitHub (Settings>Integrations>Applications)
+#   git_clone_strategy     = "github_app"
+# }
 
+
+### repo cloned via the GitHub integration, with auto-retrieval of the `github_installation_id`
+# here, we assume that `token` and `host_url` are respectively accessible via `var.dbt_token` and `var.dbt_host_url`
+# NOTE: the following requires connecting via a user token and can't be retrieved with a service token
+# data "http" "github_installations_response" {
+#   url = format("%s/v2/integrations/github/installations/", var.dbt_host_url)
+#   request_headers = {
+#     Authorization = format("Bearer %s", var.dbt_user_token)
+#   }
+# }
+
+# locals {
+#   github_installation_id = jsondecode(data.http.github_installations_response.response_body)[0].id
+# }
+
+# resource "dbtcloud_repository" "github_repo" {
+#   project_id             = dbtcloud_project.dbt_project.id
+#   remote_url             = "git@github.com:kdayno/sf-crime-stats.git"
+#   github_installation_id = local.github_installation_id
+#   git_clone_strategy     = "github_app"
+# }
+
+### repo cloned via the deploy token strategy
+resource "dbtcloud_repository" "github_repo" {
+  project_id         = dbtcloud_project.dbt_project.id
+  remote_url         = "git@github.com:kdayno/sf-crime-stats.git"
+  git_clone_strategy = "deploy_key"
+}
 resource "dbtcloud_project_repository" "github_repo_ui" {
   project_id    = dbtcloud_project.dbt_project.id
   repository_id = dbtcloud_repository.github_repo.repository_id
@@ -54,26 +82,26 @@ resource "dbtcloud_bigquery_credential" "credential_dev" {
 }
 resource "dbtcloud_environment" "dbtcloud_dev" {
   dbt_version       = "versionless"
-  name              = "Dev"
+  name              = "Development"
   project_id        = dbtcloud_project.dbt_project.id
   type              = "development"
   credential_id     = dbtcloud_bigquery_credential.credential_dev.credential_id
   connection_id     = dbtcloud_global_connection.bigquery.id
   is_active         = true
   use_custom_branch = true
-  custom_branch     = "feature/terraform-setup"
+  custom_branch     = "feature/dbt-model-build"
 }
 
-# resource "dbtcloud_environment" "dbtcloud_stg" {
-#   dbt_version     = "versionless"
-#   name            = "Dev"
-#   project_id      = dbtcloud_project.dbt_project.id
-#   type            = "deployment"
-#   deployment_type = "staging"
-#   credential_id   = dbtcloud_bigquery_credential.credential_dev.credential_id
-#   connection_id   = dbtcloud_global_connection.bigquery.id
-#   is_active       = true
+resource "dbtcloud_environment" "dbtcloud_stg" {
+  dbt_version     = "versionless"
+  name            = "Staging"
+  project_id      = dbtcloud_project.dbt_project.id
+  type            = "deployment"
+  deployment_type = "staging"
+  credential_id   = dbtcloud_bigquery_credential.credential_dev.credential_id
+  connection_id   = dbtcloud_global_connection.bigquery.id
+  is_active       = true
 
-# }
+}
 
 

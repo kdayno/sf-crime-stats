@@ -1,42 +1,47 @@
-with 
+{{
+    config(
+        materialized='view'
+    )
+}}
 
-source as (
+with
 
-    select * from {{ source('staging', 'sfpd_incidents_all') }}
+    source as (select * from {{ source("staging", "sfpd_incidents_all") }}),
 
-),
+    renamed as (
 
-renamed as (
+        select
+            {{ dbt_utils.generate_surrogate_key(['row_id', 'incident_id']) }} as globally_unique_id,
+            row_id,
+            incident_id,
+            incident_datetime,
+            incident_date,
+            incident_time,
+            incident_year,
+            incident_day_of_week,
+            report_datetime,
+            incident_number,
+            cad_number,
+            report_type_code,
+            {{ get_report_type_code('report_type_description') }} as report_type_code_modified,
+            report_type_description,
+            incident_code,
+            incident_category,
+            incident_subcategory,
+            incident_description,
+            resolution,
+            intersection,
+            cnn,
+            police_district,
+            analysis_neighborhood,
+            supervisor_district,
+            supervisor_district_2012,
+            latitude,
+            longitude
 
-    select
-        incident_datetime,
-        incident_date,
-        incident_time,
-        incident_year,
-        incident_day_of_week,
-        report_datetime,
-        row_id,
-        incident_id,
-        incident_number,
-        cad_number,
-        report_type_code,
-        report_type_description,
-        incident_code,
-        incident_category,
-        incident_subcategory,
-        incident_description,
-        resolution,
-        intersection,
-        cnn,
-        police_district,
-        analysis_neighborhood,
-        supervisor_district,
-        supervisor_district_2012,
-        latitude,
-        longitude
+        from source
 
-    from source
+    )
 
-)
-
-select * from renamed
+select *
+from renamed

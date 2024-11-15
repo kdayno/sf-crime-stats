@@ -11,21 +11,26 @@ with
     renamed as (
 
         select
+            -- identifiers
             {{ dbt_utils.generate_surrogate_key(['row_id', 'incident_id']) }} as globally_unique_id,
-            row_id,
-            incident_id,
-            incident_datetime,
-            incident_date,
-            incident_time,
-            incident_year,
+            {{ dbt.safe_cast("row_id", api.Column.translate_type("integer")) }} as row_id,
+            {{ dbt.safe_cast("incident_id", api.Column.translate_type("integer")) }} as incident_id,
+            {{ dbt.safe_cast("incident_number", api.Column.translate_type("integer")) }} as incident_number,
+            {{ dbt.safe_cast("cad_number", api.Column.translate_type("integer")) }} as cad_number, 
+
+            -- date & timestamps
+            {{ dbt.safe_cast("incident_datetime", api.Column.translate_type("datetime")) }} as incident_datetime,
+            {{ dbt.safe_cast("incident_date", api.Column.translate_type("date")) }} as incident_date,
+            {{ dbt.safe_cast("incident_time", api.Column.translate_type("timestamp")) }} as incident_time,
+            {{ dbt.safe_cast("incident_year", api.Column.translate_type("integer")) }} as incident_year,
             incident_day_of_week,
-            report_datetime,
-            incident_number,
-            cad_number,
+            {{ dbt.safe_cast("report_datetime", api.Column.translate_type("datetime")) }} as report_datetime,
+
+            -- incident details
+            incident_code,
             report_type_code,
             {{ get_report_type_code('report_type_description') }} as report_type_code_modified,
             report_type_description,
-            incident_code,
             incident_category,
             incident_subcategory,
             incident_description,

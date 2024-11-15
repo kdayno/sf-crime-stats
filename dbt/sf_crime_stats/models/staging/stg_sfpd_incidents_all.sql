@@ -21,7 +21,7 @@ with
             -- date & timestamps
             {{ dbt.safe_cast("incident_datetime", api.Column.translate_type("datetime")) }} as incident_datetime,
             {{ dbt.safe_cast("incident_date", api.Column.translate_type("date")) }} as incident_date,
-            {{ dbt.safe_cast("incident_time", api.Column.translate_type("timestamp")) }} as incident_time,
+            incident_time,
             {{ dbt.safe_cast("incident_year", api.Column.translate_type("integer")) }} as incident_year,
             incident_day_of_week,
             {{ dbt.safe_cast("report_datetime", api.Column.translate_type("datetime")) }} as report_datetime,

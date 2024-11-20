@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: fact_incidents
+    description: > 
+      Place holder description for fact_incidents
+
+  - name: dim_incident_details
+    description: > 
+      Place holder description for dim_incident_details
+
+  - name: dim_report_details
+    description: >
+      Place holder description for dim_report_details
+    columns:
+      - name: report_details_id
+      - name: report_type_code
+      - name: report_type_description
+
+  - name: dim_location
+    description: >
+      Place holder description for dim_location
+
+  - name: dim_incident_date
+    description: >
+      Place holder description for dim_incident_date
+  
+  - name: dim_report_date
+    description: >
+      Place holder description for dim_report_date
+

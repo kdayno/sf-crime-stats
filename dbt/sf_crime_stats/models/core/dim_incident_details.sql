@@ -2,7 +2,7 @@
 
 with
 
-    source as (select * from {{ source("staging", "sfpd_incidents_all") }}),
+    source as (select * from {{ ref('stg_sfpd_incidents_all') }}),
 
     dim_incident_details as (
         select distinct

@@ -1,4 +1,4 @@
-# San Francisco Crime Stats 
+![image](./docs/sf-crime-stats-header.png)
 
 ## Purpose
 

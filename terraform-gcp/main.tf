@@ -14,7 +14,7 @@ provider "google" {
 }
 
 resource "google_storage_bucket" "sf-crime-bucket" {
-  name          = "sf-crime-stats-terra-bucket"
+  name          = "sf-crime-stats-terra-bucket-kd"
   location      = var.location
   force_destroy = true
   storage_class = "STANDARD"

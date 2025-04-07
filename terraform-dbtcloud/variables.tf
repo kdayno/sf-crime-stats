@@ -7,10 +7,6 @@ variable "dbt_token" {
   type = string
 }
 
-variable "dbt_user_token" {
-  type = string
-}
-
 variable "dbt_host_url" {
   type = string
   description = "Available in dbt Cloud Account Settings under 'Access URL'. Ensure to append '/api' to url. e.g. https://*****.dbt.com/api"

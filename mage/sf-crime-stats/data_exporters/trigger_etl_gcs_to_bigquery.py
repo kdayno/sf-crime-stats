@@ -10,7 +10,7 @@ def trigger(params, *args, **kwargs):
 
     trigger_pipeline(
         'etl_gcs_to_bigquery', # Required: enter the UUID of the pipeline to trigger
-        variables={'gcp_project_id':'sf-crime-stats-440500',
+        variables={'gcp_project_id':kwargs['gcp_project_id'],
                     'source_path':params[0],
                     'bq_if_table_exists':params[1]}, # Optional: runtime variables for the pipeline
         check_status=True,     # Optional: poll and check the status of the triggered pipeline

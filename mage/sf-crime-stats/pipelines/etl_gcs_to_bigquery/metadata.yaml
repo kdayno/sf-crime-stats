@@ -81,8 +81,8 @@ variables:
   bq_dataset: sf_crime_stats
   bq_if_table_exists: replace
   config_profile: dev
-  gcp_project_id: sf-crime-stats-440500
-  gcs_bucket: sf-crime-stats-terra-bucket
+  gcp_project_id: sf-crime-stats-455819
+  gcs_bucket: sf-crime-stats-terra-bucket-kd
   source_path: raw/historical_load/
 variables_dir: /home/src/mage_data/sf-crime-stats
 widgets: []

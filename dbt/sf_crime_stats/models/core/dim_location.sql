@@ -12,3 +12,4 @@ with
 
 select *
 from dim_location
+order by police_district, analysis_neighborhood

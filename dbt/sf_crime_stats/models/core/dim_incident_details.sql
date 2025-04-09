@@ -16,3 +16,4 @@ with
 
 select *
 from dim_incident_details
+order by incident_category, incident_category, incident_description

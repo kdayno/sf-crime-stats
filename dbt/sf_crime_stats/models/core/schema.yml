@@ -3,29 +3,24 @@ version: 2
 models:
   - name: fact_incidents
     description: > 
-      Place holder description for fact_incidents
+      Contains criminal incidents reported to the San Francisco Police Department (SFPD)
 
   - name: dim_incident_details
     description: > 
-      Place holder description for dim_incident_details
+      Contains descriptive details about criminal incidents
 
   - name: dim_report_details
     description: >
-      Place holder description for dim_report_details
-    columns:
-      - name: report_details_id
-      - name: report_type_code
-      - name: report_type_description
+      Contains report information
 
   - name: dim_location
     description: >
-      Place holder description for dim_location
+      Contains San Francisco location information
 
   - name: dim_incident_date
     description: >
-      Place holder description for dim_incident_date
+      Contains date information for analysis using the date an incident occurred
   
   - name: dim_report_date
     description: >
-      Place holder description for dim_report_date
-
+      Contains date information for analysis using the date an incident was reported

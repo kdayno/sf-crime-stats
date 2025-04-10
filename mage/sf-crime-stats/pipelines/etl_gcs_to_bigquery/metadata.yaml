@@ -18,14 +18,14 @@ blocks:
   type: data_loader
   upstream_blocks: []
   uuid: load_sfpd_incidents_gcs
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration:
     file_path: transformers/transform_staged_sfpd_incidents.py
     file_source:
       path: transformers/transform_staged_sfpd_incidents.py
   downstream_blocks:
-  - sfpd_incidents_to_bigquery
+  - delete_sfpd_incidents
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -38,22 +38,45 @@ blocks:
   upstream_blocks:
   - load_sfpd_incidents_gcs
   uuid: transform_staged_sfpd_incidents
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
+  color: teal
+  configuration:
+    file_path: custom/delete_sfpd_incidents.py
+    file_source:
+      path: custom/delete_sfpd_incidents.py
+  downstream_blocks:
+  - load_sfpd_incidents_to_bigquery
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: delete_sfpd_incidents
+  retry_config: null
+  status: updated
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - transform_staged_sfpd_incidents
+  uuid: delete_sfpd_incidents
+- all_upstream_blocks_executed: false
   color: null
-  configuration: {}
+  configuration:
+    file_path: data_exporters/load_sfpd_incidents_to_bigquery.py
+    file_source:
+      path: data_exporters/load_sfpd_incidents_to_bigquery.py
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: sfpd_incidents_to_bigquery
+  name: load_sfpd_incidents_to_bigquery
   retry_config: null
   status: executed
   timeout: null
   type: data_exporter
   upstream_blocks:
-  - transform_staged_sfpd_incidents
-  uuid: sfpd_incidents_to_bigquery
+  - delete_sfpd_incidents
+  uuid: load_sfpd_incidents_to_bigquery
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
@@ -79,10 +102,10 @@ type: python
 uuid: etl_gcs_to_bigquery
 variables:
   bq_dataset: sf_crime_stats
-  bq_if_table_exists: replace
   config_profile: dev
   gcp_project_id: sf-crime-stats-455819
   gcs_bucket: sf-crime-stats-terra-bucket-kd
+  input_date: YYYY-MM-DD
   source_path: raw/historical_load/
 variables_dir: /home/src/mage_data/sf-crime-stats
 widgets: []

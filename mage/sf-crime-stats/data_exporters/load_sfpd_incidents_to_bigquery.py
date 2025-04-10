@@ -21,10 +21,9 @@ def export_data_to_big_query(df: DataFrame, **kwargs) -> None:
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = kwargs['config_profile']
 
-    bq_if_table_exists = kwargs['bq_if_table_exists']
 
     BigQuery.with_config(ConfigFileLoader(config_path, config_profile)).export(
         df,
         table_id,
-        if_exists=bq_if_table_exists,  # Specify resolution policy if table name already exists
+        if_exists='append',  # Specify resolution policy if table name already exists
     )

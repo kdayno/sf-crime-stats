@@ -15,15 +15,16 @@ def export_data_to_google_cloud_storage(params, **kwargs) -> None:
     """
     Load extracted SFPD incident data into a GCS bucket
     """
+    
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = kwargs['config_profile']
 
     df = params[0]
-    date_of_data_to_load = params[1]
+    input_date = params[1]
 
-    date_formatted = date_of_data_to_load.strftime('%Y-%m-%d')
-    date_year = date_of_data_to_load.strftime('%Y') 
-    date_month = date_of_data_to_load.strftime('%m')
+    date_formatted = input_date.strftime('%Y-%m-%d')
+    date_year = input_date.strftime('%Y') 
+    date_month = input_date.strftime('%m')
 
     bucket_name = kwargs['gcs_bucket']
     object_key = f'raw/daily_load/{date_year}/{date_month}/{date_formatted}.parquet'
@@ -35,6 +36,4 @@ def export_data_to_google_cloud_storage(params, **kwargs) -> None:
         format='parquet',
     )
 
-    bq_if_table_exists = 'append'
-
-    return (object_key, bq_if_table_exists)
+    return (object_key, input_date)

@@ -25,7 +25,6 @@ def load_from_google_cloud_storage(*args, **kwargs):
     bucket_name = kwargs['gcs_bucket']
     source_path = kwargs['source_path']
 
-
     object_key = f'{bucket_name}/{source_path}'
 
     gcs = pa.fs.GcsFileSystem()

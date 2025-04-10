@@ -37,10 +37,9 @@ def load_data_from_api(*args, **kwargs):
                 print("Input date INVALID. Provide date in the format 'YYYY-MM-DD'.", end='\n')
                 raise e
 
-    date_of_data_to_load = input_date
-    date_of_data_to_load_formatted = date_of_data_to_load.strftime('%Y-%m-%dT00:00:00.000')
+    input_date_formatted = input_date.strftime('%Y-%m-%dT00:00:00.000')
 
-    url = f"https://data.sfgov.org/resource/wg3w-h783.json?incident_date={date_of_data_to_load_formatted}"
+    url = f"https://data.sfgov.org/resource/wg3w-h783.json?incident_date={input_date_formatted}"
 
     r = requests.get(url)
 
@@ -50,4 +49,4 @@ def load_data_from_api(*args, **kwargs):
     except Exception as e:
         print(e)
 
-    return (df, date_of_data_to_load)
+    return (df, input_date)

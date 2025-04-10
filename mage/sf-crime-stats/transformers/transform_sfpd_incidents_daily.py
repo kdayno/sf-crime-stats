@@ -13,8 +13,8 @@ def transform(params, *args, **kwargs):
     Select relevant cols and parse datetime columns
     """
 
-    df = params[0].select(col('incident_datetime').str.strptime(pl.Datetime)
-                        , col('incident_date').str.strptime(pl.Datetime)
+    df = params[0].select(col('incident_date').str.to_date(format="%Y-%m-%dT%H:%M:%S%.3f")
+                        , col('incident_datetime').str.strptime(pl.Datetime)
                         , 'incident_time'
                         , col('incident_year').cast(pl.Int64)
                         , 'incident_day_of_week'
@@ -40,6 +40,6 @@ def transform(params, *args, **kwargs):
                         , 'longitude'
                     )
     
-    date_of_data_to_load = params[1]
+    input_date = params[1]
 
-    return (df, date_of_data_to_load)
+    return (df, input_date)

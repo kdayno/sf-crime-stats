@@ -16,7 +16,6 @@ def load_data_from_api(*args, **kwargs):
     """
   
     input_date = kwargs['input_date']
-    days_offset = kwargs['days_offset']
     execution_date = kwargs['execution_date']
 
     # If no input_date is provided, set input_date as current date - 1 day
@@ -38,15 +37,8 @@ def load_data_from_api(*args, **kwargs):
                 print("Input date INVALID. Provide date in the format 'YYYY-MM-DD'.", end='\n')
                 raise e
 
-    # Determine data from which DATE to load accounting for specified offset
-    if days_offset > 0:
-        date_of_data_to_load = (input_date - dt.timedelta(days_offset))
-        date_of_data_to_load_formatted = date_of_data_to_load.strftime('%Y-%m-%dT00:00:00.000')
-
-    else:
-        date_of_data_to_load = input_date
-        date_of_data_to_load_formatted = date_of_data_to_load.strftime('%Y-%m-%dT00:00:00.000')
-
+    date_of_data_to_load = input_date
+    date_of_data_to_load_formatted = date_of_data_to_load.strftime('%Y-%m-%dT00:00:00.000')
 
     url = f"https://data.sfgov.org/resource/wg3w-h783.json?incident_date={date_of_data_to_load_formatted}"
 

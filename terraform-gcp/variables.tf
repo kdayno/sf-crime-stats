@@ -6,7 +6,7 @@ variable "credentials" {
 
 variable "project" {
   description = "Project Name"
-  default     = "sf-crime-stats-440500"
+  default     = "sf-crime-stats-455819"
 }
 
 variable "location" {
@@ -16,5 +16,5 @@ variable "location" {
 
 variable "region" {
   description = "Project Region"
-  default     = "us-central1"
+  default     = "us-west1"
 }

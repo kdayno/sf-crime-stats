@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: staging
+    database: sf-crime-stats-455819
+    schema: sf_crime_stats
+    tables:
+      - name: sfpd_incidents_all

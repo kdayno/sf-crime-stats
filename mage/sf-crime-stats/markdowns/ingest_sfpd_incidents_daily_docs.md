@@ -3,7 +3,6 @@ This pipeline ingests and loads San Francisco Crime Incidents reported by the Sa
 
 **INPUT:**
 - config_profile
-- days_offset
 - gcs_bucket
 <br><br>
 

@@ -2,11 +2,10 @@ terraform {
   required_providers {
     dbtcloud = {
       source  = "dbt-labs/dbtcloud"
-      version = "0.3.13"
+      version = "0.3.26"
     }
   }
 }
-
 provider "dbtcloud" {
   account_id = var.dbt_account_id
   token      = var.dbt_token
@@ -14,8 +13,9 @@ provider "dbtcloud" {
 }
 
 resource "dbtcloud_project" "dbt_project" {
-  name                     = "sf-crime-stats"
-  dbt_project_subdirectory = "/dbt"
+  # The name of a dbt project: Must be letters, digits and underscores only, and cannot start with a digit
+  name                     = "San Francisco Crime Stats"
+  dbt_project_subdirectory = "dbt/sf_crime_stats"
 }
 
 resource "dbtcloud_global_connection" "bigquery" {
@@ -34,13 +34,12 @@ resource "dbtcloud_global_connection" "bigquery" {
   }
 }
 
+### Clone GitHub Repo via the Deploy Token Strategy
 resource "dbtcloud_repository" "github_repo" {
-  project_id             = dbtcloud_project.dbt_project.id
-  remote_url             = "git@github.com:kdayno/sf-crime-stats.git"
-  github_installation_id = 48813291 # This value can be obtained from within GitHub (Settings>Integrations>Applications)
-  git_clone_strategy     = "github_app"
+  project_id         = dbtcloud_project.dbt_project.id
+  remote_url         = "git@github.com:kdayno/sf-crime-stats.git"
+  git_clone_strategy = "deploy_key"
 }
-
 resource "dbtcloud_project_repository" "github_repo_ui" {
   project_id    = dbtcloud_project.dbt_project.id
   repository_id = dbtcloud_repository.github_repo.repository_id
@@ -54,26 +53,24 @@ resource "dbtcloud_bigquery_credential" "credential_dev" {
 }
 resource "dbtcloud_environment" "dbtcloud_dev" {
   dbt_version       = "versionless"
-  name              = "Dev"
+  name              = "Development"
   project_id        = dbtcloud_project.dbt_project.id
   type              = "development"
   credential_id     = dbtcloud_bigquery_credential.credential_dev.credential_id
   connection_id     = dbtcloud_global_connection.bigquery.id
   is_active         = true
   use_custom_branch = true
-  custom_branch     = "feature/terraform-setup"
+  custom_branch     = "feature/dbt-model-build"
 }
 
-# resource "dbtcloud_environment" "dbtcloud_stg" {
-#   dbt_version     = "versionless"
-#   name            = "Dev"
-#   project_id      = dbtcloud_project.dbt_project.id
-#   type            = "deployment"
-#   deployment_type = "staging"
-#   credential_id   = dbtcloud_bigquery_credential.credential_dev.credential_id
-#   connection_id   = dbtcloud_global_connection.bigquery.id
-#   is_active       = true
+resource "dbtcloud_environment" "dbtcloud_stg" {
+  dbt_version     = "versionless"
+  name            = "Staging"
+  project_id      = dbtcloud_project.dbt_project.id
+  type            = "deployment"
+  deployment_type = "staging"
+  credential_id   = dbtcloud_bigquery_credential.credential_dev.credential_id
+  connection_id   = dbtcloud_global_connection.bigquery.id
+  is_active       = true
 
-# }
-
-
+}

@@ -1,6 +1,7 @@
 # All GCP values can be obtained from the credentials .json file that is generated when creating a service account on GCP
 variable "dbt_account_id" {
   type = number
+  description = "Available in dbt Cloud Account Settings. e.g. 12345678912345"
 }
 variable "dbt_token" {
   type = string
@@ -8,6 +9,7 @@ variable "dbt_token" {
 
 variable "dbt_host_url" {
   type = string
+  description = "Available in dbt Cloud Account Settings under 'Access URL'. Ensure to append '/api' to url. e.g. https://*****.dbt.com/api"
 }
 
 variable "gcp_project_id" {

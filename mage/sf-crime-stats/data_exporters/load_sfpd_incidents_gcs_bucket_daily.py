@@ -21,8 +21,8 @@ def export_data_to_google_cloud_storage(params, **kwargs) -> None:
     df = params[0]
     date_of_data_to_load = params[1]
 
-    date_formatted = date_of_data_to_load.strftime('%Y-%m-%d ')
-    date_year = date_of_data_to_load.strftime('%Y')
+    date_formatted = date_of_data_to_load.strftime('%Y-%m-%d')
+    date_year = date_of_data_to_load.strftime('%Y') 
     date_month = date_of_data_to_load.strftime('%m')
 
     bucket_name = kwargs['gcs_bucket']

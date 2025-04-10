@@ -1,3 +1,5 @@
+import datetime as dt
+
 from mage_ai.orchestration.triggers.api import trigger_pipeline
 if 'data_exporter' not in globals():
     from mage_ai.data_preparation.decorators import data_exporter
@@ -10,9 +12,8 @@ def trigger(params, *args, **kwargs):
 
     trigger_pipeline(
         'etl_gcs_to_bigquery', # Required: enter the UUID of the pipeline to trigger
-        variables={'gcp_project_id':kwargs['gcp_project_id'],
-                    'source_path':params[0],
-                    'bq_if_table_exists':params[1]}, # Optional: runtime variables for the pipeline
+        variables={'source_path':params[0], # Optional: runtime variables for the pipeline
+                    'input_date':params[1].strftime('%Y-%m-%d')},
         check_status=True,     # Optional: poll and check the status of the triggered pipeline
         error_on_failure=True, # Optional: if triggered pipeline fails, raise an exception
         poll_interval=60,      # Optional: check the status of triggered pipeline every N seconds

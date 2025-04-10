@@ -5,14 +5,14 @@ if 'test' not in globals():
 
 
 @transformer
-def transform(data, *args, **kwargs):
+def transform(df, *args, **kwargs):
     """
     Standardize column names
     """
     
-    data.columns = (data.columns
+    df.columns = (df.columns
                         .str.replace(' ', '_')
                         .str.lower()
     )
 
-    return data
+    return df

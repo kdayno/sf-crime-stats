@@ -2,25 +2,64 @@ version: 2
 
 models:
   - name: fact_incidents
-    description: > 
-      Contains criminal incidents reported to the San Francisco Police Department (SFPD)
-
+    description: Contains criminal incidents reported to the San Francisco Police Department (SFPD)
+    columns:
+      - name: incident_id
+        data_tests:
+          - unique
+          - not_null
+      - name: incident_date_fk
+        data_tests:
+          - not_null
+      - name: report_date_fk
+        data_tests:
+          - not_null
+      - name: incident_details_fk
+        data_tests:
+          - not_null
+      - name: report_details_fk
+        data_tests:
+          - not_null
+      - name: location_fk
+        data_tests:
+          - not_null
+    
   - name: dim_incident_details
-    description: > 
-      Contains descriptive details about criminal incidents
+    description: Contains descriptive details about criminal incidents
+    columns:
+      - name: incident_details_id
+        data_tests:
+          - unique
+          - not_null
 
   - name: dim_report_details
-    description: >
-      Contains report information
+    description: Contains report information
+    columns:
+      - name: report_details_id
+        data_tests:
+          - unique
+          - not_null
 
   - name: dim_location
-    description: >
-      Contains San Francisco location information
+    description: Contains San Francisco location information
+    columns:
+      - name: location_id
+        data_tests:
+          - unique
+          - not_null
 
   - name: dim_incident_date
-    description: >
-      Contains date information for analysis using the date an incident occurred
-  
+    description: Contains date information for analysis using the date an incident occurred
+    columns:
+      - name: incident_date_id
+        data_tests:
+          - unique
+          - not_null
+
   - name: dim_report_date
-    description: >
-      Contains date information for analysis using the date an incident was reported
+    description: Contains date information for analysis using the date an incident was reported
+    columns:
+      - name: report_date_id
+        data_tests:
+          - unique
+          - not_null

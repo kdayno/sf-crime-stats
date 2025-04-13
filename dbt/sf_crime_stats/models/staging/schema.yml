@@ -6,3 +6,12 @@ sources:
     schema: sf_crime_stats
     tables:
       - name: sfpd_incidents_all
+        description: 'One record per reported incident'
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 7
+            period: day
+        loaded_at_field: "load_date_ts"

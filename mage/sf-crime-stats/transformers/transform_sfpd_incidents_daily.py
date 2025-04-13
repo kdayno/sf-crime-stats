@@ -1,5 +1,6 @@
 import polars as pl
 from polars import col
+from datetime import datetime
 
 if 'transformer' not in globals():
     from mage_ai.data_preparation.decorators import transformer
@@ -38,6 +39,7 @@ def transform(params, *args, **kwargs):
                         , 'supervisor_district_2012'
                         , 'latitude'
                         , 'longitude'
+                        , pl.lit(datetime.now()).alias('load_date_ts')
                     )
     
     input_date = params[1]

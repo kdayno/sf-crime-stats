@@ -1,0 +1,11 @@
+sf_crime_stats:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: sf-crime-stats-455819
+      dataset: dbt_kd # You can also use "schema" here
+      threads: 4 # Must be a value of 1 or greater
+      keyfile: /workspaces/sf-crime-stats/terraform-gcp/keys/keys.json
+      OPTIONAL_CONFIG: VALUE

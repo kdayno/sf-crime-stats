@@ -44,8 +44,8 @@ with
             analysis_neighborhood,
             supervisor_district,
             supervisor_district_2012,
-            latitude,
-            longitude
+            {{ dbt.safe_cast("latitude", api.Column.translate_type("decimal")) }} as latitude,
+            {{ dbt.safe_cast("longitude", api.Column.translate_type("decimal")) }} as longitude
 
         from source
 

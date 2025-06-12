@@ -47,5 +47,3 @@ variable "auth_provider_x509_cert_url" {
 variable "client_x509_cert_url" {
   type = string
 }
-
-

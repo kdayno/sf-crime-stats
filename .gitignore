@@ -198,7 +198,7 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
-keys.json
+*keys.json
 
 # Mage
 .DS_Store

@@ -1,4 +1,7 @@
-# All GCP values can be obtained from the credentials .json file that is generated when creating a service account on GCP
+variable "env" {
+  description = "The environment name"
+  type        = string
+}
 variable "dbt_account_id" {
   type = number
   description = "Available in dbt Cloud Account Settings. e.g. 12345678912345"

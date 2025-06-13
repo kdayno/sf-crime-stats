@@ -7,5 +7,6 @@ sf_crime_stats:
       project: sf-crime-stats-455819
       dataset: dbt_kd # You can also use "schema" here
       threads: 4 # Must be a value of 1 or greater
-      keyfile: /workspaces/sf-crime-stats/terraform-gcp/keys/keys.json
+      keyfile: /home/src/keys/gcp-keys.json
+      # /workspaces/sf-crime-stats/terraform-gcp/keys/gcp-keys.json
       OPTIONAL_CONFIG: VALUE

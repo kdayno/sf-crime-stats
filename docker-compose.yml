@@ -15,4 +15,6 @@ services:
       - 6789:6789
     volumes:
       - ./mage:/home/src/
+      - ./dbt/sf_crime_stats:/home/src/sf-crime-stats/dbt/sf_crime_stats_dbt
+      - ./terraform/envs/dev/keys:/home/src/keys
     restart: on-failure:5s

@@ -7,11 +7,15 @@ ARG MAGE_CODE_PATH=/home
 ARG USER_CODE_PATH=${MAGE_CODE_PATH}/${PROJECT_NAME}
 
 WORKDIR ${MAGE_CODE_PATH}
+RUN mkdir secrets
 
 # Copy Mage project
 COPY ${PROJECT_NAME} ${PROJECT_NAME}
 # Copy dbt project
 COPY ./dbt ${PROJECT_NAME}/dbt/sf-crime-stats-dbt
+
+RUN mkdir -p ./secrets
+
 
 ENV USER_CODE_PATH=${USER_CODE_PATH}
 

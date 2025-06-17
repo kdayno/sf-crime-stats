@@ -1,20 +1,17 @@
 services:
-  magic:
-    # image: mageai/mageai:latest
-    command: mage start ${PROJECT_NAME}
-    env_file:
-      - .env
+  mageai:
     build:
       context: .
-      dockerfile: ./mage/Dockerfile
+      dockerfile: Dockerfile
       args:
-        - USER_CODE_PATH=${USER_CODE_PATH}
-    environment:
-      ENV: ${ENV}
-    ports:
-      - 6789:6789
+        PROJECT_NAME: mage/sf-crime-stats-mage
+        MAGE_CODE_PATH: /home
     volumes:
-      - ./mage:/home/src/
-      - ./dbt/sf_crime_stats:/home/src/sf-crime-stats/dbt/sf_crime_stats_dbt
-      - ./terraform/envs/dev/keys:/home/src/keys
-    restart: on-failure:5s
+      - ./mage/sf-crime-stats-mage:/home/mage/sf-crime-stats-mage
+      - ./dbt:/home/mage/sf-crime-stats-mage/dbt/sf-crime-stats-dbt
+      # - ./terraform/envs/dev/keys:/home/mage/sf-crime-stats-mage/secrets ### Mount GCP keys for local development
+    environment:
+      - ENV=dev
+    ports:
+      - "6789:6789"
+    command: /bin/sh -c "/app/run_app.sh"

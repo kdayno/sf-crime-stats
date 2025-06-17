@@ -13,8 +13,7 @@ COPY ${PROJECT_NAME} ${PROJECT_NAME}
 # Copy dbt project
 COPY ./dbt ${PROJECT_NAME}/dbt/sf-crime-stats-dbt
 
-RUN mkdir -p ./secrets
-
+RUN mkdir -p ${USER_CODE_PATH}/secrets
 
 ENV USER_CODE_PATH=${USER_CODE_PATH}
 

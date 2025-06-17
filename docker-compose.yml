@@ -1,5 +1,5 @@
 services:
-  mageai:
+  mage-ai:
     build:
       context: .
       dockerfile: Dockerfile

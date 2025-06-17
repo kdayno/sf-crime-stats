@@ -4,7 +4,9 @@ default:
   GOOGLE_LOCATION: US # Optional
 
 dev:
-  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/home/src/secrets/gcp_keys.json"
-  GOOGLE_LOCATION: US # Optional
+  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/home/mage/secrets/gcp_keys_dev.json"
+  GOOGLE_LOCATION: US
 
-
+prod:
+  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/home/mage/secrets/gcp_keys_prod.json"
+  GOOGLE_LOCATION: US

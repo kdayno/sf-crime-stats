@@ -214,4 +214,4 @@ docker-compose.override.yml
 logs/
 mage-ai.db
 mage_data/
-secrets/
+*keys*.json

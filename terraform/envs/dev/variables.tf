@@ -7,7 +7,7 @@ variable "env" {
 ### GCP specific variables ###
 variable "credentials" {
   description = "My GCP Credentials"
-  default     = "./keys/gcp-keys.json"
+  default     = "./keys/gcp_keys_dev.json"
 }
 
 variable "project_name" {

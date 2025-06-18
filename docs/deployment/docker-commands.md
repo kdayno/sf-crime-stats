@@ -8,5 +8,6 @@ sudo docker run -it --rm \
 
 ### Commands to tag and deploy docker image to Docker Hub
 docker tag sf-crime-stats-mage kdayno/sf-crime-stats:latest
-docker login
+docker login -u kdayno
+  -> Provide personal access token when prompted
 docker push kdayno/sf-crime-stats:latest

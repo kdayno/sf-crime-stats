@@ -11,7 +11,7 @@ WORKDIR ${MAGE_CODE_PATH}
 # Copy Mage project
 COPY ${PROJECT_NAME} ${PROJECT_NAME}
 # Copy dbt project
-COPY ./dbt ${PROJECT_NAME}/dbt/sf-crime-stats-dbt
+COPY ./dbt/sf_crime_stats ${MAGE_CODE_PATH}
 
 RUN mkdir -p ${USER_CODE_PATH}/secrets
 

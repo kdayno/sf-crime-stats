@@ -8,7 +8,7 @@ services:
         MAGE_CODE_PATH: /home
     volumes:
       - ./mage/sf-crime-stats-mage:/home/mage/sf-crime-stats-mage
-      - ./dbt:/home/mage/sf-crime-stats-mage/dbt/sf-crime-stats-dbt
+      - ./dbt/sf_crime_stats:/home # mage-ai looks for dbt project in /home by default
       # - ./terraform/envs/dev/keys:/home/mage/sf-crime-stats-mage/secrets ### Mount GCP keys for local development
     environment:
       - ENV=dev

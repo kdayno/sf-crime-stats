@@ -1,1 +1,15 @@
-triggers: []
+triggers:
+- description: null
+  envs: []
+  last_enabled_at: 2025-06-18 23:24:00.223229
+  name: dbt_daily_trigger
+  pipeline_uuid: build_dbt_all_models
+  schedule_interval: 0 18 * * *
+  schedule_type: time
+  settings: null
+  sla: null
+  start_time: 2025-06-01 18:00:00
+  status: active
+  token: d8d3e436a69348bfb910c5393438e87f
+  variables:
+    env: dev

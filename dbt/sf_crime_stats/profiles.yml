@@ -1,12 +1,26 @@
 sf_crime_stats:
-  target: dev
+  target: dev # Default target
   outputs:
+    default:
+      type: bigquery
+      method: service-account
+      project: sf-crime-stats-455819
+      dataset: dbt_kd
+      threads: 4 # Must be a value of 1 or greater
+      keyfile: /home/mage/sf-crime-stats-mage/secrets/gcp_keys_dev.json
+
     dev:
       type: bigquery
       method: service-account
       project: sf-crime-stats-455819
-      dataset: dbt_kd # You can also use "schema" here
+      dataset: sf_crime_stats_dev
       threads: 4 # Must be a value of 1 or greater
-      keyfile: /home/src/keys/gcp-keys.json
-      # /workspaces/sf-crime-stats/terraform-gcp/keys/gcp-keys.json
-      OPTIONAL_CONFIG: VALUE
+      keyfile: /home/mage/sf-crime-stats-mage/secrets/gcp_keys_dev.json
+
+    prod:
+      type: bigquery
+      method: service-account
+      project: sf-crime-stats-455819
+      dataset: sf_crime_stats_prod
+      threads: 4 # Must be a value of 1 or greater
+      keyfile: /home/mage/sf-crime-stats-mage/secrets/gcp_keys_prod.json

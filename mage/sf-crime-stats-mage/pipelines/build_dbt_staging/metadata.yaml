@@ -18,7 +18,7 @@ blocks:
   language: yaml
   name: build_dbt_staging
   retry_config: null
-  status: updated
+  status: failed
   timeout: null
   type: dbt
   upstream_blocks: []
@@ -48,5 +48,5 @@ type: python
 uuid: build_dbt_staging
 variables:
   env: dev
-variables_dir: /home/src/mage_data/sf-crime-stats
+variables_dir: /home/src/mage_data/sf-crime-stats-mage
 widgets: []

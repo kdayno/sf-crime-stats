@@ -3,7 +3,7 @@ blocks:
   color: null
   configuration:
     dbt: {}
-    dbt_profile_target: ''
+    dbt_profile_target: '{{ variables(''env'') }}'
     dbt_project_name: dbt/sf-crime-stats-dbt/sf_crime_stats
     disable_query_preprocessing: false
     export_write_policy: append
@@ -26,8 +26,14 @@ blocks:
 - all_upstream_blocks_executed: false
   color: null
   configuration:
+    dbt: {}
+    dbt_profile_target: '{{ variables(''env'') }}'
+    dbt_project_name: dbt/sf-crime-stats-dbt/sf_crime_stats
+    disable_query_preprocessing: false
+    export_write_policy: append
     file_source:
       path: dbts/dbt_build_core.yaml
+    use_raw_sql: false
   downstream_blocks:
   - dbt_build_dashboard
   executor_config: null
@@ -45,8 +51,14 @@ blocks:
 - all_upstream_blocks_executed: false
   color: null
   configuration:
+    dbt: {}
+    dbt_profile_target: '{{ variables(''env'') }}'
+    dbt_project_name: dbt/sf-crime-stats-dbt/sf_crime_stats
+    disable_query_preprocessing: false
+    export_write_policy: append
     file_source:
       path: dbts/dbt_build_dashboard.yaml
+    use_raw_sql: false
   downstream_blocks: []
   executor_config: null
   executor_type: local_python

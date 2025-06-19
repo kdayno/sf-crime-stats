@@ -15,7 +15,7 @@ sf_crime_stats:
       project: sf-crime-stats-455819
       dataset: sf_crime_stats_dev
       threads: 4 # Must be a value of 1 or greater
-      keyfile: /home/mage/sf-crime-stats-mage/secrets/gcp_keys_dev.json
+      keyfile: /secrets/bigquery/bigquery-credentials-dev.json
 
     prod:
       type: bigquery
@@ -23,4 +23,4 @@ sf_crime_stats:
       project: sf-crime-stats-455819
       dataset: sf_crime_stats_prod
       threads: 4 # Must be a value of 1 or greater
-      keyfile: /home/mage/sf-crime-stats-mage/secrets/gcp_keys_prod.json
+      keyfile: /secrets/bigquery/bigquery-credentials-prod.json

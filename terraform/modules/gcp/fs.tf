@@ -1,7 +1,7 @@
 # fs.tf | File System Configuration
 
 resource "google_filestore_instance" "instance" {
-  name = "${var.app_name}"
+  name = "${var.app_name}-${var.env}"
   location = var.zone
   tier = "BASIC_HDD"
 
@@ -17,7 +17,7 @@ resource "google_filestore_instance" "instance" {
 }
 
 resource "google_vpc_access_connector" "connector" {
-  name          = "${var.app_name}-connector"
+  name          = "${var.app_name}-${var.env}-conn"
   ip_cidr_range = "10.8.0.0/28"
   region        = var.region
   network       = "default"

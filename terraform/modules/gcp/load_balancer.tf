@@ -5,7 +5,7 @@ data "http" "myip" {
 }
 
 resource "google_compute_security_policy" "policy" {
-  name = "${var.app_name}-security-policy"
+  name = "${var.app_name}-security-policy-${var.env}"
 
   rule {
     action   = "allow"
@@ -46,7 +46,7 @@ resource "google_compute_security_policy" "policy" {
 }
 
 resource "google_compute_region_network_endpoint_group" "cloudrun_neg" {
-  name                  = "${var.app_name}-neg"
+  name                  = "${var.app_name}-neg-${var.env}"
   network_endpoint_type = "SERVERLESS"
   region                = var.region
   cloud_run {
@@ -57,7 +57,7 @@ resource "google_compute_region_network_endpoint_group" "cloudrun_neg" {
 module "lb-http" {
   source  = "GoogleCloudPlatform/lb-http/google//modules/serverless_negs"
   version = "~> 6.3"
-  name    = "${var.app_name}-urlmap"
+  name    = "${var.app_name}-urlmap-${var.env}"
   project = var.project_name
 
   ssl                             = var.ssl

@@ -4,9 +4,9 @@ default:
   GOOGLE_LOCATION: US # Optional
 
 dev:
-  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/secrets/bigquery/bigquery-credentials-dev.json"
+  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/secrets/bigquery/bigquery-credentials-dev"
   GOOGLE_LOCATION: US
 
 prod:
-  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/secrets/bigquery/bigquery-credentials-prod.json"
+  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/secrets/bigquery/bigquery-credentials-prod"
   GOOGLE_LOCATION: US

@@ -1,0 +1,62 @@
+# Node.js dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Virtual environments
+.env
+.env.*
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile*
+.dockerignore
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Compiled files and build artifacts
+dist/
+build/
+*.o
+*.so
+*.out
+*.class
+
+# Test/coverage
+coverage/
+*.cover
+*.lcov
+
+# Editor/IDE folders
+.vscode/
+.idea/
+*.swp
+
+# Misc
+tmp/
+temp/
+*.bak
+*.tmp
+
+*keys*.json

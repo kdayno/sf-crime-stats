@@ -1,6 +1,6 @@
 version: 0.1.1
 default:
-  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/home/src/secrets/gcp_keys.json"
+  GOOGLE_SERVICE_ACC_KEY_FILEPATH: "/home/mage/sf-crime-stats-mage/secrets/gcp_keys_dev.json"
   GOOGLE_LOCATION: US # Optional
 
 dev:

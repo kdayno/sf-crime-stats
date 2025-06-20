@@ -24,9 +24,7 @@ def load_from_google_cloud_storage(*args, **kwargs):
     with open(config_path, 'r') as f:
         io_config = yaml.safe_load(f)
 
-    gcp_credentials_path = io_config.get(config_profile).get('GOOGLE_SERVICE_ACC_KEY_FILEPATH')
-
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = gcp_credentials_path
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = io_config.get(config_profile).get('GOOGLE_SERVICE_ACC_KEY_FILEPATH')
 
     bucket_name = kwargs['gcs_bucket']
     source_path = kwargs['source_path']

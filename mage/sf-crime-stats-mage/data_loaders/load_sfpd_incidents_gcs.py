@@ -20,7 +20,7 @@ def load_from_google_cloud_storage(*args, **kwargs):
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = kwargs['config_profile']
 
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] =  path.join(get_repo_path(), f'secrets/gcp_keys_{config_profile}.json')
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] =  path.join(get_repo_path(), f'secrets/gcp_keys_{config_profile}')
 
     bucket_name = kwargs['gcs_bucket']
     source_path = kwargs['source_path']

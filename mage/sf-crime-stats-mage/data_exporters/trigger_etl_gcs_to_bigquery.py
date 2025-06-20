@@ -13,7 +13,8 @@ def trigger(params, *args, **kwargs):
     trigger_pipeline(
         'etl_gcs_to_bigquery', # Required: enter the UUID of the pipeline to trigger
         variables={'source_path':params[0], # Optional: runtime variables for the pipeline
-                    'input_date':params[1].strftime('%Y-%m-%d')},
+                    'input_date':params[1].strftime('%Y-%m-%d'),
+                    'config_profile':params[2]},
         check_status=True,     # Optional: poll and check the status of the triggered pipeline
         error_on_failure=True, # Optional: if triggered pipeline fails, raise an exception
         poll_interval=60,      # Optional: check the status of triggered pipeline every N seconds

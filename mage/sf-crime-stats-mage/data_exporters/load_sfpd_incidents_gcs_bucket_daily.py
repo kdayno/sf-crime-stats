@@ -36,4 +36,4 @@ def export_data_to_google_cloud_storage(params, **kwargs) -> None:
         format='parquet',
     )
 
-    return (object_key, input_date)
+    return (object_key, input_date, config_profile)

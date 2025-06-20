@@ -1,5 +1,4 @@
-# Start from the mageai base image
-FROM mageai/mageai:latest
+FROM mageai/mageai:0.9.76
 
 # Set build-time arguments
 ARG PROJECT_NAME=mage/sf-crime-stats-mage
@@ -13,8 +12,6 @@ COPY ${PROJECT_NAME} ${PROJECT_NAME}
 # Copy dbt project - required at both locations below
 COPY ./dbt ${PROJECT_NAME}/dbt/sf-crime-stats-dbt 
 COPY ./dbt/sf_crime_stats ${MAGE_CODE_PATH}
-
-RUN mkdir -p ${USER_CODE_PATH}/secrets
 
 ENV USER_CODE_PATH=${USER_CODE_PATH}
 

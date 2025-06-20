@@ -10,6 +10,7 @@ if 'test' not in globals():
 import pyarrow as pa
 import pyarrow.parquet as pq
 import os
+import yaml
 
 @data_loader
 def load_from_google_cloud_storage(*args, **kwargs):
@@ -20,7 +21,12 @@ def load_from_google_cloud_storage(*args, **kwargs):
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = kwargs['config_profile']
 
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] =  path.join(get_repo_path(), f'secrets/gcp_keys_{config_profile}')
+    with open(config_path, 'r') as f:
+        io_config = yaml.safe_load(f)
+
+    gcp_credentials_path = io_config.get(config_profile).get('GOOGLE_SERVICE_ACC_KEY_FILEPATH')
+
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = gcp_credentials_path
 
     bucket_name = kwargs['gcs_bucket']
     source_path = kwargs['source_path']

@@ -1,0 +1,14 @@
+### dbt Cloud specific variables ###
+# All GCP values can be obtained from the credentials .json file that is generated when creating a service account on GCP
+dbt_account_id = ""
+dbt_token = ""
+dbt_host_url = ""
+gcp_project_id = ""
+private_key_id = ""
+private_key = ""
+client_email = ""
+client_id = ""
+auth_uri = ""
+token_uri = ""
+auth_provider_x509_cert_url = ""
+client_x509_cert_url = ""

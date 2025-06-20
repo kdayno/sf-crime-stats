@@ -198,7 +198,7 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
-keys.json
+*keys.json
 
 # Mage
 .DS_Store
@@ -214,4 +214,4 @@ docker-compose.override.yml
 logs/
 mage-ai.db
 mage_data/
-secrets/
+*keys*.json

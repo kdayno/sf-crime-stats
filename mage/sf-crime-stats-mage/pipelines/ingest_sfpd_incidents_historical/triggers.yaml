@@ -1,0 +1,14 @@
+triggers:
+- description: null
+  envs: []
+  last_enabled_at: 2024-11-10 16:06:57.299988
+  name: looped_block_api_trigger
+  pipeline_uuid: ingest_sf_crime_incidents_historical
+  schedule_interval: null
+  schedule_type: api
+  settings: null
+  sla: null
+  start_time: 2024-11-10 16:06:57.299962
+  status: inactive
+  token: 8a7a3af9d49d4edebf60831fd1975699
+  variables: null

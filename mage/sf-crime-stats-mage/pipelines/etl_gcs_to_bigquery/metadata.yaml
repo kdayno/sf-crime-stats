@@ -102,10 +102,10 @@ type: python
 uuid: etl_gcs_to_bigquery
 variables:
   bq_dataset: sf_crime_stats
-  config_profile: dev
+  config_profile: prod
   gcp_project_id: sf-crime-stats-455819
   gcs_bucket: sf-crime-stats-terra-bucket-kd
   input_date: YYYY-MM-DD
-  source_path: raw/historical_load/
-variables_dir: /home/src/mage_data/sf-crime-stats
+  source_path: raw/daily/2025/06/2025-06-01.parquet
+variables_dir: /home/src/mage_data/sf-crime-stats-mage
 widgets: []

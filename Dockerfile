@@ -1,5 +1,5 @@
 # Start from the mageai base image
-FROM mageai/mageai:latest
+FROM mageai/mageai:0.9.76
 
 # Set build-time arguments
 ARG PROJECT_NAME=mage/sf-crime-stats-mage

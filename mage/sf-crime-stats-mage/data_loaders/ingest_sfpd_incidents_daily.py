@@ -2,6 +2,7 @@ import io
 import polars as pl
 import requests
 import datetime as dt
+import ast
 
 if 'data_loader' not in globals():
     from mage_ai.data_preparation.decorators import data_loader
@@ -43,15 +44,15 @@ def load_data_from_api(*args, **kwargs):
 
     r = requests.get(url)
 
-
     if r.text.strip() != '[]':
         try:
             df = pl.read_json(io.StringIO(r.text))
-            
+        
         except Exception as e:
-            raise ValueError("ERROR - Problem with reading in source data. Terminating pipeline run.")
-    
+            print(e)
+            raise ValueError("ERROR - Source data could not be ingested. Terminating pipeline execution.")
+
     else:
-        raise ValueError("WARNING - No source data available. Check 'input_date' param. Terminating pipeline run.")
+        raise ValueError("WARNING - There is no source data available to process. Check 'input_date' param. Terminating pipeline execution.")
 
     return (df, input_date)

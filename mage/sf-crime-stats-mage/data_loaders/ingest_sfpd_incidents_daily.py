@@ -43,10 +43,15 @@ def load_data_from_api(*args, **kwargs):
 
     r = requests.get(url)
 
-    try:
-        df = pl.read_json(io.StringIO(r.text))
-        
-    except Exception as e:
-        print(e)
+
+    if r.text.strip() != '[]':
+        try:
+            df = pl.read_json(io.StringIO(r.text))
+            
+        except Exception as e:
+            raise ValueError("ERROR - Problem with reading in source data. Terminating pipeline run.")
+    
+    else:
+        raise ValueError("WARNING - No source data available. Check 'input_date' param. Terminating pipeline run.")
 
     return (df, input_date)

@@ -69,23 +69,23 @@ The SFPD publishes detailed, regularly updated incident data through the city's 
 ![image](./docs/images/bi-dashboard.png)
 
 # 3. Challenges
-
+1. **Terraform Deployment Permissions:** It was difficult identifying the correct roles that were required by the service account to create all infrastructure and deploy the docker image to Cloud Run seamlessly. This was only partially defined in the mage-ai documentation and required extensive troubleshooting to resolve missing roles.
 
 
 # 4. Deployment
-
-<br>
-
+- All infrastructure is deployed via Terraform scripts
+- A custom docker mage-ai docker image is pulled from Docker Hub and deployed to GCP Cloud Run via Terraform scripts
+    - Docker image: [kdayno/sf-crime-stats](https://hub.docker.com/r/kdayno/sf-crime-stats)
+  
 # 5. Future Enhancements
-
-<br>
+1. **Additional Data Sources:** The open data portal (DataSF) offers many other datasets which could be used to provide deeper analysis. For example, the [Registered Business Locations - San Francisco](https://data.sfgov.org/Economy-and-Community/Registered-Business-Locations-San-Francisco/g8m3-pdis/about_data) dataset could be integrated into the solution to analyze how crime has impacted businesses in the city over time.
 
 # 6. Project Structure
 ```
 sf-crime-stats
 |
 ├── mage
-│   └── sf-crime-stats-mage
+│   └── sf-crime-stats-mage       -> Mage project
 │       ├── data_exporters
 │       ├── data_loaders
 │       ├── dbts
@@ -93,14 +93,14 @@ sf-crime-stats
 │       ├── pipelines
 │       └── transformers
 ├── dbt
-│   └── sf_crime_stats
+│   └── sf_crime_stats.            -> dbt project
 │       ├── dbt_project.yml
 │       ├── macros
 │       └── models
 │           ├── core
 │           ├── marts
 │           └── staging
-├── terraform
+├── terraform                      -> Terraform project
 │   ├── envs
 │   │   ├── dev
 │   │   │   ├── keys
@@ -123,16 +123,22 @@ sf-crime-stats
 │           ├── main.tf
 │           └── variables.tf
 ├── docs
-│   ├── deployment
-│   └── images
+│   ├── deployment                 
+│   └── images                     -> Images for README
 ├── .github
 │   └── workflows                  -> GitHub Actions
-├── Dockerfile
-├── docker-compose.yml
+├── Dockerfile                     -> Builds custom docker mage-ai image for GCP deployment
+├── docker-compose.yml             -> Used for local development
 └── README.md
 ```
-<br>
 
 # 7. References
+Mage AI Docs:
+- [Deploy to GCP with Terraform](https://docs.mage.ai/production/deploying-to-cloud/gcp/setup#4-deploy)
+- [GCP Secret Management](https://docs.mage.ai/production/deploying-to-cloud/secrets/GCP)
+
+Preset BI Docs:
+- [Configuring Dashboard Refresh](https://docs.preset.io/docs/creating-a-dashboard#edit-dashboard-properties)
 
 # 8. Acknowledgements
+This project was built as the capstone for the [Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp) - 2024 Cohort.

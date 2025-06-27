@@ -1,4 +1,4 @@
-![image](./docs/images/sf-crime-stats-header.png)
+![image](./docs/images/repo-header.png)
 
 **Table of Contents**
 - [1. Overview](#1-overview)
@@ -39,8 +39,7 @@ The SFPD publishes detailed, regularly updated incident data through the city's 
 
 # 2. Design & Development
 ## 2.1. Solution Architecture
-![image](./docs/images/sf-crime-stats-solution-architecture.png)
-<br>
+![image](./docs/images/solution-architecture.png)
 
 ## 2.2. Tech Stack
 - **Storage:** GCP Buckets, Parquet
@@ -51,13 +50,27 @@ The SFPD publishes detailed, regularly updated incident data through the city's 
 
 ## 2.3. Data Model
 
-## 2.4. Orchestration
+## 2.4. dbt Data Lineage
+![image](./docs/images/dbt-data-lineage.jpeg)
 
-## 2.5. Dashboard
+## 2.5. Orchestration
+![image](./docs/images/orchestration-dashboard.jpeg)
+
+### "*ingest_sfpt_incidents_daily*" Pipeline
+<img src="./docs/images/ingest_sfpt_incidents_daily_pipeline.png" alt="ingest_sfpt_incidents_daily_pipeline" style="width:300px; height:auto;" />
+
+### "*etl_gcs_to_bigquery*" Pipeline
+<img src="./docs/images/etl_gcs_to_bigquery_pipeline.png" alt="etl_gcs_to_bigquery_pipeline" style="width:300px; height:auto;" />
+
+### "*build_dbt_all_models*" Pipeline
+<img src="./docs/images/build_dbt_all_models_pipeline.png" alt="build_dbt_all_models_pipeline" style="width:300px; height:auto;" />
+
+## 2.6. Dashboard
+![image](./docs/images/bi-dashboard.png)
 
 # 3. Challenges
 
-<br>
+
 
 # 4. Deployment
 
@@ -68,7 +81,56 @@ The SFPD publishes detailed, regularly updated incident data through the city's 
 <br>
 
 # 6. Project Structure
-
+```
+sf-crime-stats
+|
+├── mage
+│   └── sf-crime-stats-mage
+│       ├── data_exporters
+│       ├── data_loaders
+│       ├── dbts
+│       ├── markdowns
+│       ├── pipelines
+│       └── transformers
+├── dbt
+│   └── sf_crime_stats
+│       ├── dbt_project.yml
+│       ├── macros
+│       └── models
+│           ├── core
+│           ├── marts
+│           └── staging
+├── terraform
+│   ├── envs
+│   │   ├── dev
+│   │   │   ├── keys
+│   │   │   ├── main.tf
+│   │   │   ├── terraform.tfvars
+│   │   │   └── variables.tf
+│   │   └── prod
+│   │       ├── keys
+│   │       ├── main.tf
+│   │       ├── terraform.tfvars
+│   │       └── variables.tf
+│   └── modules
+│       ├── dbtcloud
+│       │   ├── main.tf
+│       │   └── variables.tf
+│       └── gcp
+│           ├── db.tf
+│           ├── fs.tf
+│           ├── load_balancer.tf
+│           ├── main.tf
+│           └── variables.tf
+├── docs
+│   ├── deployment
+│   └── images
+├── .github
+│   └── workflows                  -> GitHub Actions
+├── Dockerfile
+├── docker-compose.yml
+└── README.md
+```
 <br>
 
 # 7. References

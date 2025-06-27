@@ -45,8 +45,8 @@ The SFPD publishes detailed, regularly updated incident data through the city's 
 ## 2.2. Tech Stack
 - **Storage:** GCP Buckets, Parquet
 - **Data Processing:** BigQuery, Python, Polars, dbt Core
-- **Data Visualization:** Preset Cloud/Superset 
-- **Orchestration:** Mage AI
+- **Data Visualization:** [Preset Cloud/Superset](https://preset.io/)
+- **Orchestration:** [Mage AI](https://www.mage.ai/)
 - **DevOps:** Terraform, Docker, GitHub, GitHub Actions
 
 ## 2.3. Data Model

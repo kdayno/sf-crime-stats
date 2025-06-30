@@ -8,9 +8,9 @@
 - [2. Design \& Development](#2-design--development)
   - [2.1. Solution Architecture](#21-solution-architecture)
   - [2.2. Tech Stack](#22-tech-stack)
-  - [2.3. Data Model](#23-data-model)
-  - [2.4. Orchestration](#24-orchestration)
-  - [2.5. Dashboard](#25-dashboard)
+  - [2.3. Data Model - Star Schema](#23-data-model---star-schema)
+  - [2.4. dbt Data Lineage](#24-dbt-data-lineage)
+  - [2.5. Orchestration](#25-orchestration)
 - [3. Challenges](#3-challenges)
 - [4. Deployment](#4-deployment)
 - [5. Future Enhancements](#5-future-enhancements)
@@ -48,7 +48,9 @@ The SFPD publishes detailed, regularly updated incident data through the city's 
 - **Orchestration:** [Mage AI](https://www.mage.ai/)
 - **DevOps:** Terraform, Docker, GitHub, GitHub Actions
 
-## 2.3. Data Model
+## 2.3. Data Model - Star Schema 
+![image](./docs/images/star-schema-data-model.png)
+
 
 ## 2.4. dbt Data Lineage
 ![image](./docs/images/dbt-data-lineage.jpeg)

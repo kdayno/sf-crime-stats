@@ -70,6 +70,11 @@ The SFPD publishes detailed, regularly updated incident data through the city's 
 ## 2.6. Dashboard
 ![image](./docs/images/bi-dashboard.png)
 
+
+https://github.com/user-attachments/assets/c7ad1234-581b-480f-a036-0c82e82a06ff
+
+<br>
+
 # 3. Challenges
 1. **Terraform Deployment Permissions:** It was difficult identifying the correct roles that were required by the service account to create all infrastructure and deploy the docker image to Cloud Run seamlessly. This was only partially defined in the mage-ai documentation and required extensive troubleshooting to resolve missing roles.
 

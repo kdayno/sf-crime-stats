@@ -11,8 +11,8 @@
   - [2.3. Data Model - Star Schema](#23-data-model---star-schema)
   - [2.4. dbt Data Lineage](#24-dbt-data-lineage)
   - [2.5. Orchestration](#25-orchestration)
-- [3. Challenges](#3-challenges)
-- [4. Deployment](#4-deployment)
+- [3. Deployment](#3-challenges)
+- [4. Challenges](#4-deployment)
 - [5. Future Enhancements](#5-future-enhancements)
 - [6. Project Structure](#6-project-structure)
 - [7. References](#7-references)
@@ -75,15 +75,14 @@ https://github.com/user-attachments/assets/c7ad1234-581b-480f-a036-0c82e82a06ff
 
 <br>
 
-# 3. Challenges
-1. **Terraform Deployment Permissions:** It was difficult identifying the correct roles that were required by the service account to create all infrastructure and deploy the docker image to Cloud Run seamlessly. This was only partially defined in the mage-ai documentation and required extensive troubleshooting to resolve missing roles.
-
-
-# 4. Deployment
+# 3. Deployment
 - All infrastructure is deployed via Terraform scripts
 - A custom docker mage-ai docker image is pulled from Docker Hub and deployed to GCP Cloud Run via Terraform scripts
     - Docker image: [kdayno/sf-crime-stats](https://hub.docker.com/r/kdayno/sf-crime-stats)
   
+# 4. Challenges
+1. **Terraform Deployment Permissions:** It was difficult identifying the correct roles that were required by the service account to create all infrastructure and deploy the docker image to Cloud Run seamlessly. This was only partially defined in the mage-ai documentation and required extensive troubleshooting to resolve missing roles.
+
 # 5. Future Enhancements
 1. **Additional Data Sources:** The open data portal (DataSF) offers many other datasets which could be used to provide deeper analysis. For example, the [Registered Business Locations - San Francisco](https://data.sfgov.org/Economy-and-Community/Registered-Business-Locations-San-Francisco/g8m3-pdis/about_data) dataset could be integrated into the solution to analyze how crime has impacted businesses in the city over time.
 

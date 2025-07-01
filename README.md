@@ -91,6 +91,14 @@ https://github.com/user-attachments/assets/c7ad1234-581b-480f-a036-0c82e82a06ff
 ```
 sf-crime-stats
 |
+├── docs
+│   ├── deployment                 
+│   └── images                     -> Images for README
+├── .github
+│   └── workflows                  -> GitHub Actions
+├── Dockerfile                     -> Builds custom docker mage-ai image for GCP deployment
+├── docker-compose.yml             -> Used for local development
+├── README.md
 ├── mage
 │   └── sf-crime-stats-mage       -> Mage project
 │       ├── data_exporters
@@ -107,36 +115,28 @@ sf-crime-stats
 │           ├── core
 │           ├── marts
 │           └── staging
-├── terraform                      -> Terraform project
-│   ├── envs
-│   │   ├── dev
-│   │   │   ├── keys
-│   │   │   ├── main.tf
-│   │   │   ├── terraform.tfvars
-│   │   │   └── variables.tf
-│   │   └── prod
-│   │       ├── keys
-│   │       ├── main.tf
-│   │       ├── terraform.tfvars
-│   │       └── variables.tf
-│   └── modules
-│       ├── dbtcloud
-│       │   ├── main.tf
-│       │   └── variables.tf
-│       └── gcp
-│           ├── db.tf
-│           ├── fs.tf
-│           ├── load_balancer.tf
-│           ├── main.tf
-│           └── variables.tf
-├── docs
-│   ├── deployment                 
-│   └── images                     -> Images for README
-├── .github
-│   └── workflows                  -> GitHub Actions
-├── Dockerfile                     -> Builds custom docker mage-ai image for GCP deployment
-├── docker-compose.yml             -> Used for local development
-└── README.md
+└── terraform                      -> Terraform project
+    ├── envs
+    │   ├── dev
+    │   │   ├── keys
+    │   │   ├── main.tf
+    │   │   ├── terraform.tfvars
+    │   │   └── variables.tf
+    │   └── prod
+    │       ├── keys
+    │       ├── main.tf
+    │       ├── terraform.tfvars
+    │       └── variables.tf
+    └── modules
+        ├── dbtcloud
+        │   ├── main.tf
+        │   └── variables.tf
+        └── gcp
+            ├── db.tf
+            ├── fs.tf
+            ├── load_balancer.tf
+            ├── main.tf
+            └── variables.tf
 ```
 
 # 7. References

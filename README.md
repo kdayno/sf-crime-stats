@@ -100,7 +100,7 @@ sf-crime-stats
 ├── docker-compose.yml             -> Used for local development
 ├── README.md
 ├── mage
-│   └── sf-crime-stats-mage       -> Mage project
+│   └── sf-crime-stats-mage        -> Mage project
 │       ├── data_exporters
 │       ├── data_loaders
 │       ├── dbts
@@ -108,14 +108,14 @@ sf-crime-stats
 │       ├── pipelines
 │       └── transformers
 ├── dbt
-│   └── sf_crime_stats.            -> dbt project
+│   └── sf_crime_stats.             -> dbt project
 │       ├── dbt_project.yml
 │       ├── macros
 │       └── models
 │           ├── core
 │           ├── marts
 │           └── staging
-└── terraform                      -> Terraform project
+└── terraform                       -> Terraform project
     ├── envs
     │   ├── dev
     │   │   ├── keys
